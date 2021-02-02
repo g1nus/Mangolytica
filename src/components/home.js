@@ -1,7 +1,5 @@
 import React, {useContext, useEffect} from "react";
 
-import {withRouter} from 'react-router-dom';
-
 import {AppContext} from "components/providers/appProvider";
 
 /**
