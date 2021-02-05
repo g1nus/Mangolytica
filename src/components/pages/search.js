@@ -1,53 +1,20 @@
-import React, {useEffect, useState, useRef} from 'react';
-import { useForm } from 'react-hook-form';
+import React from 'react';
+import TrendingStreamers from 'components/modules/search/trendingStreamers';
+import SearchButton from 'components/svg/searchButton';
 
-import {searchDao} from 'dao/search.dao';
-
-const SearchPage = function(props) {
-
-  const [searchResults, setSearchResults] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const { register, handleSubmit, watch, errors } = useForm();
-
-  //refernce and mount cycle handler
-  const isMounted = useRef(true)
-  useEffect(() => {
-    return () => {
-      isMounted.current = false
-      searchDao.cancelRequest();
-    }
-  }, []) 
-
-  const onSubmit = async function (data) {
-    try{
-      setLoading(true);
-      let results = await searchDao.searchStreamer(data.query);
-      setLoading(false);
-      console.log(results.data);
-      if(isMounted.current) setSearchResults(results.data);
-    }catch (err){
-      if(isMounted.current) setSearchResults([{error: `failed`}]);
-    }
-  }
-
+const Search = function(props) {
   return (
-    <>
-      search page
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input name="query" ref={register({ required: true })} />
-        {errors.query && <span>This field is required</span>}
-        <input type='submit'/>
+    <div id='search-wrapper'>
+      <img src='/mangologo.png' id='logo' />
+      <form id='search-form'>
+        <input type='text' placeholder='search for a streamer...' />
+        <button type='submit'>
+          <SearchButton />
+        </button>
       </form>
-      {(loading) ?
-        "loading..."
-      :
-        <>
-          {searchResults.map((result, index) => <p key={index}>{result.display_name} | {result.id} | {(result.is_live) ? "true" : "false"}</p>)}
-        </>
-      }
-    </>
+      <TrendingStreamers />
+    </div>
   );
 }
 
-export default SearchPage;
+export default Search;
