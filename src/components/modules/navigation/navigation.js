@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Navigation = function(props) {
   return (
     <nav>
-      <Link id='nav-logo-wrapper'>
+      <Link id='nav-logo-wrapper' to='/'>
         <p id='nav-logo-text'>
           MangoLytica
         </p>
