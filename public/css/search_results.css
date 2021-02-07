@@ -164,7 +164,7 @@ div#search-results-wrapper p#no-web-results{
   font-weight: 300;
 }
 
-div#search-results-wrapper div#web-results-wrapper div#twitch-results button.twitch-streamer{
+div#search-results-wrapper div#web-results-wrapper div#twitch-results div.twitch-streamer{
   margin: 10px auto 10px auto;
   
   border: none;
@@ -173,7 +173,7 @@ div#search-results-wrapper div#web-results-wrapper div#twitch-results button.twi
   font: inherit;
   color: black;
 }
-div#search-results-wrapper div#web-results-wrapper div#twitch-results button.twitch-streamer:hover{
+div#search-results-wrapper div#web-results-wrapper div#twitch-results div.twitch-streamer:hover{
   cursor: pointer;
 }
 
