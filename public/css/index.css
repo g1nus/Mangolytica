@@ -1,9 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;700;900&display=swap');
+/*ANIMATIONS*/
+@keyframes hue-fill{
+  0%{
+    fill: #b5db00;
+  }
+  25%{
+    fill: #ff9100;
+  }
+  50%{
+    fill: #00db12;
+  }
+  85%{
+    fill: #db0700;
+  }
+  100%{
+    fill: #b5db00;
+  }
+}
+@keyframes hue-text{
+  0%{
+    color: #b5db00;
+  }
+  25%{
+    color: #ff9100;
+  }
+  50%{
+    color: #00db12;
+  }
+  85%{
+    color: #db0700;
+  }
+  100%{
+    color: #b5db00;
+  }
+}
+@keyframes ripple{
+  0%{
+    scale: 0.7;
+  }
+  25%{
+    scale: 1.04;
+  }
+  100%{
+    scale: 0.7
+  }
+}
+@keyframes hue{
+  0%{
+    background-color: #b5db00;
+  }
+  25%{
+    background-color: #ff9100;
+  }
+  50%{
+    background-color: #00db12;
+  }
+  85%{
+    background-color: #db0700;
+  }
+  100%{
+    background-color: #b5db00;
+  }
+}
+
+
 * {
   box-sizing: border-box;
-  transition: all 0.2s ease-out;
+  transition: box-shadow 0.2s ease-out;
 }
-input:focus, button:focus{
+input:focus, button:focus, button{
   outline: none;
 }
 a{
@@ -30,6 +95,31 @@ code {
   height: 40vmin;
   pointer-events: none;
 }
+
+/*SVG*/
+.st0-loading{
+  fill: #b5db00;
+  animation: hue-fill 90s ease-in-out 0s infinite forwards;
+}
+.st0-twitch-logo{
+  fill: #5A3E85;
+}
+.st0-tick{
+  fill: transparent;
+  stroke: white;
+  stroke-width: 10;stroke-linecap: round;stroke-linejoin: round;stroke-miterlimit: 10;
+}
+.st0-search-icon{
+  fill:none;
+  stroke:#441600;
+  stroke-width:84.4587;stroke-miterlimit:10;
+}
+.st1-search-icon{
+  fill:none;
+  stroke:#441600;
+  stroke-width:105.5733;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

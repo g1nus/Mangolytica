@@ -1,0 +1,337 @@
+div#search-results-wrapper{
+  width: 1000px;
+  margin: 10px auto 0px auto;
+}
+div#search-results-wrapper p.title{
+  margin: 30px 0px 0px 0px;
+
+  text-align: center;
+  font-size: 27px;
+  font-weight: 700;
+}
+div#search-results-wrapper p.title span{
+  color: #b5db00;
+  animation: hue-text 90s ease-in-out 0s infinite forwards;
+}
+div#search-results-wrapper p#title-tip{
+  margin: 0px;
+
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+
+div#search-results-wrapper div#mango-match-loading{
+  height: 20px;
+  width: 60px;
+  margin: 20px auto 0px auto;
+}
+div#search-results-wrapper p#no-mango-match{
+  margin: 20px 0px 0px 0px;
+
+  text-align: center;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+div#search-results-wrapper div#platform-results-wrapper{
+  margin: 20px 0px 0px 0px;
+}
+div#search-results-wrapper div#platform-results-wrapper div#mango-match-results{
+  width: 70%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+div#search-results-wrapper div#platform-results-wrapper div.mango-streamer-grid{
+  height: 100px;
+  width: 320px;
+
+  display: grid;
+  grid-template-columns: 20px 78px 20px auto;
+  grid-template-rows: 11px 30px 26px 2px 20px 11px;
+  grid-template-areas: 
+   ". . . ."
+   ". propic . name"
+   ". propic . socials"
+   ". propic . ."
+   ". propic . details"
+   ". . . .";
+
+   font-size: 0;
+}
+div.mango-streamer-grid div.mango-streamer-pic{
+  grid-area: propic;
+  justify-self: stretch;
+  align-self: stretch;
+  position: relative;
+
+  border-radius: 50%;
+  border: solid 1px #9d3700;
+  overflow: hidden;
+}
+div.mango-streamer-pic img.mango-streamer-propic{
+  height: 100%;
+  width: 100%;
+}
+div.mango-streamer-grid p.name{
+  margin: 0px 0px 0px 0px;
+
+  grid-area: name;
+  justify-self: stretch;
+  align-self: stretch;
+  position: relative;
+
+  text-align: left;
+  font-size: 24px;
+}
+
+div.mango-streamer-grid div.mango-streamer-socials-wrapper{
+  grid-area: socials;
+  justify-self: stretch;
+  align-self: start;
+  position: relative;
+}
+div.mango-streamer-grid div.mango-streamer-socials-wrapper span.twitch-inline-logo{
+  width: 12px;
+  height: 12px;
+  translate: 0px 2px;
+  margin: 0px 2px 0px 0px;
+}
+div.mango-streamer-grid div.mango-streamer-socials-wrapper span.twitter-inline-logo{
+  width: 14px;
+  height: 14px;
+  translate: 0px 1px;
+  margin: 0px 1px 0px 10px;
+}
+div.mango-streamer-grid div.mango-streamer-socials-wrapper *{
+  display: inline-block;
+
+  font-weight: 400;
+}
+div.mango-streamer-grid div.mango-streamer-socials-wrapper span.text{
+  font-size: 15px;
+}
+div.mango-streamer-grid p.mango-streamer-created{
+  margin: 0px 0px 0px 0px;
+
+  grid-area: details;
+  justify-self: stretch;
+  align-self: start;
+  position: relative;
+
+  text-align: left;
+  font-size: 12px;
+  font-weight: 300;
+  color: #484848;
+}
+
+
+div#search-results-wrapper div#web-results-wrapper{
+  width: 95%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /*border: solid 1px green;*/
+}
+div#search-results-wrapper div#web-results-wrapper div#twitter-results{
+  width: 340px;
+  /*border: solid 1px violet;*/
+}
+div#search-results-wrapper div#web-results-wrapper div#twitch-results{
+  width: 340px;
+  /*border: solid 1px violet;*/
+}
+
+div#search-results-wrapper div#web-results-loading{
+  height: 20px;
+  width: 60px;
+  margin: 20px auto 0px auto;
+}
+div#search-results-wrapper p#no-web-results{
+  margin: 20px 0px 0px 0px;
+  
+  text-align: center;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+div#search-results-wrapper div#web-results-wrapper div#twitch-results button.twitch-streamer{
+  margin: 10px auto 10px auto;
+  
+  border: none;
+  background-color: white;
+  text-align: left;
+  font: inherit;
+  color: black;
+}
+div#search-results-wrapper div#web-results-wrapper div#twitch-results button.twitch-streamer:hover{
+  cursor: pointer;
+}
+
+div#search-results-wrapper div#web-results-wrapper div#twitch-results div.web-twitch-streamer-grid{
+  width: 400px;
+
+  display: grid;
+  grid-template-columns: 20px 90px 20px auto 3px;
+  grid-template-rows: 15px 30px 20px 40px auto 20px;
+  grid-template-areas: 
+   ". . . . ."
+   ". propic . name ."
+   ". propic . followers ."
+   ". propic . description ."
+   ". . . description ."
+   ". . . . .";
+  grid-auto-rows: max-content;
+
+  align-content: stretch;
+  font-size: 0;
+}
+div.web-twitch-streamer-grid p{
+  margin: 0px;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic{
+  grid-area: propic;
+  justify-self: stretch;
+  align-self: stretch;
+  position: relative;
+
+  border-radius: 50%;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic img.web-twitch-streamer-propic{
+  height: 100%;
+  width: 100%;
+
+  border-radius: 50%;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.twitch-badge{
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  width: 25px;
+  height: 25px;
+  z-index: 1;
+
+  background-color: #5A3E85;
+  border-radius: 50%;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic svg.twitch-logo{
+  width: 60%;
+  height: 60%;
+  margin: 20%;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.live-dot{
+  position: absolute;
+  bottom: 7px;
+  right: 5px;
+  width: 15px;
+  height: 15px;
+  z-index: 1;
+
+  background-color: #ff2a23;
+  border-radius: 50%;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.live-dot-ripple{
+  position: absolute;
+  bottom: 4px;
+  right: 2px;
+  width: 21px;
+  height: 21px;
+  z-index: 2;
+  
+  background-color: #f74937;
+  opacity: 0.3;
+  border-radius: 50%;
+  animation: ripple 2s ease-in-out 0s infinite forwards;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic svg path.st0-twitch-logo{
+  fill: white;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  z-index: 0;
+
+  border-radius: 50%;
+  overflow: hidden;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected div.selected-bg{
+  width: 100%;
+  height: 100%;
+
+  background-color: #87db00;
+  opacity: 0.7;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected svg.tick{
+  position: absolute;
+  top: 0px;
+}
+div.web-twitch-streamer-grid p.name{
+  position: relative;
+  width: 200px;
+
+  grid-area: name;
+  justify-self: start;
+  align-self: start;
+
+  font-size: 25px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+div.web-twitch-streamer-grid p.followers{
+  position: relative;
+
+  grid-area: followers;
+  justify-self: stretch;
+  align-self: start;
+
+  font-size: 13px;
+  font-weight: 300;
+  color: #484848
+
+}
+div.web-twitch-streamer-grid p.description{
+  height: 48px;
+  
+  grid-area: description;
+  justify-self: stretch;
+  align-self: start;
+  position: relative;
+  font-size: 14px;
+  font-weight: 400;
+  color: #484848;
+
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+
+/*MOBILE*/
+@media only screen and (max-width: 600px) {
+  div#search-results-wrapper div#platform-results-wrapper div#mango-match-results{
+    width: 95%;
+    /*flex-direction: column;*/
+  }
+  div#search-results-wrapper{
+    width: 100%;
+    margin: 10px auto 0px auto;
+  }
+}

@@ -1,18 +1,3 @@
-@keyframes hue{
-  0%{
-    background-color: #b5db00;
-  }
-  25%{
-    background-color: #ff9100;
-  }
-  50%{
-    background-color: #00db12;
-  }
-  85%{
-    background-color: #db0700;
-  }
-}
-
 nav{
   height: 58px;
   display: grid;
@@ -46,7 +31,7 @@ nav a#nav-logo-wrapper div.nav-logo-underbar{
   position: absolute;
 
   background-color: #b5db00;
-  animation: hue 80s ease-in-out 0s infinite forwards;
+  animation: hue 90s ease-in-out 0s infinite forwards;
 }
 nav a#nav-logo-wrapper div.nav-logo-underbar#one{
   left: 2px;
