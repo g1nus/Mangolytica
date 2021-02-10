@@ -11,28 +11,21 @@ const StreamPage = function() {
 
   const [streamResult, setStreamResult] = useState([]);
   const [emotes, setEmotes] = useState({});
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () =>{
       try{
-        let emotes = {};
         const result = await streamDao.getStream(id);
         const tunits = result.events.data.chatTunits;
         if(isMounted.current) setStreamResult(result.events.data.chatTunits);
+        
+        let queryString = [...new Set([].concat.apply([], tunits.map(x => x.topWords.map(word => word.word))))].join();
+        console.log(queryString)
+        const foundEmotes = await emotesDao.getEmotes(result.streamerId, queryString);
 
-        for(let i = 0; i < tunits.length; i++){
-          const wordsCode = tunits[i].topWords.reduce((word, string) => ({word: word.word + "," + string.word}));
-          const foundEmotes = await emotesDao.getEmotes(result.streamerId, wordsCode.word);
-          tunits[i].topWords.forEach(word => {
-            if(!emotes[word.word] && foundEmotes[word.word]){
-              emotes[word.word] = foundEmotes[word.word];
-            }
-          });
-        }
-        console.log(emotes);
+        console.log(foundEmotes);
 
-        if(isMounted.current) setEmotes(emotes);
+        if(isMounted.current) setEmotes(foundEmotes);
 
       }catch (err){
         console.log(err);
@@ -62,10 +55,10 @@ const StreamPage = function() {
               return(
                 <div key={index}>
                   {unit.topWords.map((word, indey) => {
-                    return <>
+                    return <div key={index + indey}>
                       <p> {(emotes[word.word]) ?  <img src={emotes[word.word]} alt={word.word} width="100" height="100"/>  : <></>} </p>
-                      <p key={indey + index}> {word.word} ({word.count}) </p>
-                    </>
+                      <p> {word.word} ({word.count}) </p>
+                    </div>
                   })}
                 <p>-----------------------</p>
                 </div>
