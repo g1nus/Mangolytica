@@ -27,7 +27,7 @@ const SearchResults = function(props) {
         if(isMounted.current) setSearchResultsMango(resultsMango.data);
         
         let resultsOnline = await searchDao.searchStreamerOnLine(query);
-        if(isMounted.current) setSearchResults(resultsOnline.data.map((res) => ({...res, selected: false})));
+        if(isMounted.current) setSearchResults(resultsOnline.results.map((res) => ({...res, selected: false})));
       
       }catch (err){
         console.log(err);
