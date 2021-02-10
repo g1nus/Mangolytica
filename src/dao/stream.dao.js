@@ -26,6 +26,16 @@ async function getStreamsByStreamerId(id) {
   }
 }
 
+async function getStreamEvents(streamerId, streamId) {
+  try {
+    console.log(`[DAO] searching the events of stream id -> ${streamId}`);
+    let resp = await axios.get(`${config.apiEndpoint}streamers/${streamerId}/streams/${streamId}/events?key=${config.apiSecret}`, {cancelToken: source.token});
+    return resp.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 function cancelRequest () {
   source.cancel(`[S]request cancelled`);
 }
@@ -33,6 +43,7 @@ function cancelRequest () {
 const streamDao = {
   getStream,
   getStreamsByStreamerId,
+  getStreamEvents,
   cancelRequest
 }
 

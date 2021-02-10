@@ -6,7 +6,7 @@ import {emotesDao} from 'dao/emotes.dao';
 
 const StreamPage = function() {
 
-  let { id } = useParams();
+  let { streamerId, streamId } = useParams();
   const isMounted = useRef(true);
 
   const [streamResult, setStreamResult] = useState([]);
@@ -15,17 +15,21 @@ const StreamPage = function() {
   useEffect(() => {
     const fetchData = async () =>{
       try{
-        const result = await streamDao.getStream(id);
-        const tunits = result.events.data.chatTunits;
-        if(isMounted.current) setStreamResult(result.events.data.chatTunits);
+        const result = await streamDao.getStreamEvents(streamerId, streamId);
+
+        console.log(result);
+        
+        const tunits = result.chatTunits;
+        if(isMounted.current) setStreamResult(result.chatTunits);
         
         let queryString = [...new Set([].concat.apply([], tunits.map(x => x.topWords.map(word => word.word))))].join();
         console.log(queryString)
-        const foundEmotes = await emotesDao.getEmotes(result.streamerId, queryString);
+        const foundEmotes = await emotesDao.getEmotes(streamerId, queryString);
 
         console.log(foundEmotes);
 
         if(isMounted.current) setEmotes(foundEmotes);
+        
 
       }catch (err){
         console.log(err);
@@ -38,13 +42,13 @@ const StreamPage = function() {
     return () => {
       isMounted.current = false;
     }
-  }, [id])
+  }, [streamId, streamerId])
 
   console.log(`render!`);
 
   return (
     <>
-      stream page: {id}
+      stream page: {streamId}
       <p></p>
       <div>
         {
@@ -56,11 +60,11 @@ const StreamPage = function() {
                 <div key={index}>
                   {unit.topWords.map((word, indey) => {
                     return <div key={index + indey}>
-                      <p> {(emotes[word.word]) ?  <img src={emotes[word.word]} alt={word.word} width="100" height="100"/>  : <></>} </p>
+                      <p> {(emotes[word.word]) ?  <img src={emotes[word.word]} alt={word.word} height="100"/>  : <></>} </p>
                       <p> {word.word} ({word.count}) </p>
                     </div>
                   })}
-                <p>-----------------------</p>
+                <p>-----------------------[{unit.createdAt}]</p>
                 </div>
               );
             })}

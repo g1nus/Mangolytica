@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 import {streamDao} from 'dao/stream.dao';
 
@@ -47,7 +47,7 @@ const StreamerPage = function() {
           <div>
             {
               streamResults.map((result, index) => 
-                <p key={index}> {result.streamId} | <i>{result.title}</i> </p>
+                <p key={index}> <Link to={`/streamer/${id}/stream/${result.streamId}`}>{result.streamId}</Link> | <i>{result.title}</i> </p>
               )
             }
         </div>)

@@ -17,7 +17,7 @@ const Main = function() {
         <Route exact path="/" children={<Home />}/>
         <Route exact path="/search" children={<Search />}/>
         <Route exact path="/search_res" children={<SearchResults />}/>
-        <Route path="/stream/:id" children={<StreamPage />}/>
+        <Route path="/streamer/:streamerId/stream/:streamId" children={<StreamPage />}/>
         <Route path="/streamer/:id" children={<StreamerPage />}/>
         <Route children={<NotFoundPage />}/>
       </Switch>
