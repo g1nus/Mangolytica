@@ -4,6 +4,7 @@ import {searchDao} from 'dao/search.dao';
 import Loading from 'components/svg/loading';
 import MangoStreamer from 'components/modules/search/mangoStreamer';
 import TwitchStreamer from 'components/modules/search/twitchStreamer';
+import TwitterUser from 'components/modules/search/twitterUser';
 
 const SearchResults = function(props) {
 
@@ -11,6 +12,10 @@ const SearchResults = function(props) {
   const [searchResultsMango, setSearchResultsMango] = useState(undefined);
   //search results from the web
   const [searchResults, setSearchResults] = useState(undefined);
+
+  //fake twitter search results
+  const [searchResultsTwitter, setSearchResultsTwitter] = useState(undefined);
+
   //query to search
   const [query, setQuery] = useState([]);
 
@@ -28,6 +33,9 @@ const SearchResults = function(props) {
         
         let resultsOnline = await searchDao.searchStreamerOnLine(query);
         if(isMounted.current) setSearchResults(resultsOnline.results.map((res) => ({...res, selected: false})));
+
+        let fakeResultsTwitter = await searchDao.searchTwitterFake(query);
+        if(isMounted.current) setSearchResultsTwitter(fakeResultsTwitter.map((res) => ({...res, selected: false})));
       
       }catch (err){
         console.log(err);
@@ -51,6 +59,18 @@ const SearchResults = function(props) {
       return streamer;
     });
     setSearchResults(newStreamerList);
+  }
+
+  //function for selection of twitter user
+  function selectTwitterUser(index) {
+    let newTwitterUserList = searchResultsTwitter.map((twitterUser,idx) => {
+      twitterUser.selected = false;
+      if(idx === index){
+        twitterUser.selected = true;
+      }
+      return twitterUser;
+    });
+    setSearchResultsTwitter(newTwitterUserList);
   }
 
   return (
@@ -79,7 +99,7 @@ const SearchResults = function(props) {
       {(searchResults) ? <p id='title-tip'>Please select the Twitch and Twitter official accounts of the person you're looking for</p> : <></>}
 
       <div id='web-results-wrapper'>
-        {(!searchResults) ? 
+        {(!searchResults || !searchResultsTwitter) ? 
           <div id='web-results-loading'> 
             <Loading />
           </div> 
@@ -99,7 +119,13 @@ const SearchResults = function(props) {
             </div>
 
             <div id='twitter-results'>
-
+              {searchResultsTwitter.map((result, index) => {
+                  return (
+                    <div className='twitter-user' key={index} onClick={() => {selectTwitterUser(index)}}>
+                      <TwitterUser {...result} />
+                    </div>
+                  );
+                })}
             </div>
           </>)
         }
