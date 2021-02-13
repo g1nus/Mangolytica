@@ -142,12 +142,8 @@ div#search-results-wrapper div#web-results-wrapper{
   justify-content: space-between;
   /*border: solid 1px green;*/
 }
-div#search-results-wrapper div#web-results-wrapper div#twitter-results{
-  width: 340px;
-  /*border: solid 1px violet;*/
-}
-div#search-results-wrapper div#web-results-wrapper div#twitch-results{
-  width: 340px;
+div#search-results-wrapper div#web-results-wrapper div#twitter-results, div#search-results-wrapper div#web-results-wrapper div#twitch-results{
+  width: 430px;
   /*border: solid 1px violet;*/
 }
 
@@ -173,11 +169,11 @@ div#search-results-wrapper div#web-results-wrapper div#twitch-results div.twitch
   font: inherit;
   color: black;
 }
-div#search-results-wrapper div#web-results-wrapper div#twitch-results div.twitch-streamer:hover{
+div#search-results-wrapper div#web-results-wrapper div#twitch-results div.twitch-streamer:hover, div#search-results-wrapper div#web-results-wrapper div#twitter-results div.twitter-user:hover{
   cursor: pointer;
 }
 
-div#search-results-wrapper div#web-results-wrapper div#twitch-results div.web-twitch-streamer-grid{
+div#search-results-wrapper div#web-results-wrapper div#twitch-results div.web-twitch-streamer-grid, div#search-results-wrapper div#web-results-wrapper div#twitter-results div.web-twitter-user-grid{
   width: 400px;
 
   display: grid;
@@ -195,10 +191,10 @@ div#search-results-wrapper div#web-results-wrapper div#twitch-results div.web-tw
   align-content: stretch;
   font-size: 0;
 }
-div.web-twitch-streamer-grid p{
+div.web-twitch-streamer-grid p, div.web-twitter-user-grid p{
   margin: 0px;
 }
-div.web-twitch-streamer-grid div.web-twitch-streamer-pic{
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic, div.web-twitter-user-grid div.web-twitter-user-pic{
   grid-area: propic;
   justify-self: stretch;
   align-self: stretch;
@@ -206,13 +202,13 @@ div.web-twitch-streamer-grid div.web-twitch-streamer-pic{
 
   border-radius: 50%;
 }
-div.web-twitch-streamer-grid div.web-twitch-streamer-pic img.web-twitch-streamer-propic{
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic img.web-twitch-streamer-propic, div.web-twitter-user-grid div.web-twitter-user-pic img.web-twitter-user-propic{
   height: 100%;
   width: 100%;
 
   border-radius: 50%;
 }
-div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.twitch-badge{
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.twitch-badge, div.web-twitter-user-grid div.web-twitter-user-pic div.twitter-badge{
   position: absolute;
   bottom: 2px;
   left: 2px;
@@ -220,24 +216,39 @@ div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.twitch-badge{
   height: 25px;
   z-index: 1;
 
-  background-color: #5A3E85;
   border-radius: 50%;
 }
-div.web-twitch-streamer-grid div.web-twitch-streamer-pic svg.twitch-logo{
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.twitch-badge{
+  background-color: #5A3E85;
+}
+div.web-twitter-user-grid div.web-twitter-user-pic div.twitter-badge{
+  background-color: #55acee;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic svg.twitch-logo, div.web-twitter-user-grid div.web-twitter-user-pic svg.twitter-logo{
   width: 60%;
   height: 60%;
   margin: 20%;
 }
-div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.live-dot{
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.live-dot, div.web-twitter-user-grid div.web-twitter-user-pic div.verified{
   position: absolute;
+  z-index: 1;
+
+  border-radius: 50%;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.live-dot{
   bottom: 7px;
   right: 5px;
   width: 15px;
   height: 15px;
-  z-index: 1;
 
   background-color: #ff2a23;
-  border-radius: 50%;
+}
+div.web-twitter-user-grid div.web-twitter-user-pic div.verified{
+  bottom: 4px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
 }
 div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.live-dot-ripple{
   position: absolute;
@@ -255,7 +266,10 @@ div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.live-dot-ripple{
 div.web-twitch-streamer-grid div.web-twitch-streamer-pic svg path.st0-twitch-logo{
   fill: white;
 }
-div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected{
+div.web-twitter-user-grid div.web-twitter-user-pic svg path.st0-twitter-logo{
+  fill: white;
+}
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected, div.web-twitter-user-grid div.web-twitter-user-pic div.selected{
   position: absolute;
   width: 100%;
   height: 100%;
@@ -265,18 +279,18 @@ div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected{
   border-radius: 50%;
   overflow: hidden;
 }
-div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected div.selected-bg{
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected div.selected-bg, div.web-twitter-user-grid div.web-twitter-user-pic div.selected div.selected-bg{
   width: 100%;
   height: 100%;
 
   background-color: #87db00;
   opacity: 0.7;
 }
-div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected svg.tick{
+div.web-twitch-streamer-grid div.web-twitch-streamer-pic div.selected svg.tick, div.web-twitter-user-grid div.web-twitter-user-pic div.selected svg.tick{
   position: absolute;
   top: 0px;
 }
-div.web-twitch-streamer-grid p.name{
+div.web-twitch-streamer-grid p.name, div.web-twitter-user-grid p.name{
   position: relative;
   width: 200px;
 
@@ -290,7 +304,7 @@ div.web-twitch-streamer-grid p.name{
   text-overflow: ellipsis;
 
 }
-div.web-twitch-streamer-grid p.followers{
+div.web-twitch-streamer-grid p.followers, div.web-twitter-user-grid p.followers{
   position: relative;
 
   grid-area: followers;
@@ -302,7 +316,7 @@ div.web-twitch-streamer-grid p.followers{
   color: #484848
 
 }
-div.web-twitch-streamer-grid p.description{
+div.web-twitch-streamer-grid p.description, div.web-twitter-user-grid p.description{
   height: 48px;
   
   grid-area: description;

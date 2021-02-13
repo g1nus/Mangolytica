@@ -104,6 +104,15 @@ code {
 .st0-twitch-logo{
   fill: #5A3E85;
 }
+.st0-twitter-logo{
+  fill: #55acee;
+}
+.st0-twitter-verified{
+  fill: #55acee;
+}
+.st0-twitter-verified-bg{
+  fill: white;
+}
 .st0-tick{
   fill: transparent;
   stroke: white;
