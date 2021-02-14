@@ -71,6 +71,12 @@ div#search-wrapper div#trending-streamers div#img-wrapper img.streamer-propic-tr
   border: solid 2px #ff9100;
 }
 
+div#search-wrapper p#submitted-info{
+  text-align: center;
+  margin: 30px;
+  color: #827255;
+}
+
 /*MOBILE*/
 @media only screen and (max-width: 600px) {
   div#search-wrapper{

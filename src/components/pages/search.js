@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from "react-router-dom";
 
@@ -8,6 +8,15 @@ import SearchButton from 'components/svg/searchButton';
 const Search = function(props) {
 
   let history = useHistory();
+
+  const [submittedFlag, setSubmittedFlag] = useState(false);
+
+  useEffect(() => {
+    const submitted = window.location.hash.substring(window.location.hash.indexOf('submitted=') + 10).match(/[^(?|&|=)]*/)[0];
+    console.log(submitted)
+    setSubmittedFlag(submitted === "true");
+
+  }, []); 
 
   const { register, handleSubmit, watch, errors } = useForm();
   const onSubmit = async function (data) {
@@ -25,6 +34,13 @@ const Search = function(props) {
         </button>
       </form>
       <TrendingStreamers />
+      {(submittedFlag) ?
+        <p id='submitted-info'>
+          The users you've selected will appear in the database as soon as they've completed 2 streams
+        </p>
+      :
+        <></>
+      }
     </div>
   );
 }
