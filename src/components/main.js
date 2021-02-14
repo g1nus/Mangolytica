@@ -4,7 +4,7 @@ import {Route, Switch} from "react-router-dom";
 import Home from 'components/home';
 import SearchResults from 'components/pages/searchResults';
 import StreamPage from 'components/pages/stream';
-import StreamerPage from "components/pages/streamer";
+import InfoPage from "components/pages/infoPage";
 import NotFoundPage from "components/pages/notFound";
 import Search from "components/pages/search";
 import Navigation from 'components/modules/navigation/navigation'
@@ -18,7 +18,7 @@ const Main = function() {
         <Route exact path="/search" children={<Search />}/>
         <Route exact path="/search_res" children={<SearchResults />}/>
         <Route path="/streamer/:streamerId/stream/:streamId" children={<StreamPage />}/>
-        <Route path="/streamer/:id" children={<StreamerPage />}/>
+        <Route path="/streamer/:id" children={<InfoPage />}/>
         <Route children={<NotFoundPage />}/>
       </Switch>
     </>

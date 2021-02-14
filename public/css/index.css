@@ -131,7 +131,22 @@ code {
   stroke:#441600;
   stroke-width:105.5733;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;
 }
-
+.st0-likes-icon{
+  fill:none;
+  stroke:#e0245e;
+  stroke-width:46;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
+.st0-retweets-icon{
+  fill:none;
+  stroke:#17bf63;
+  stroke-width:46;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

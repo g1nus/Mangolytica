@@ -19,7 +19,6 @@ async function getStreamsByStreamerId(id) {
   try {
     console.log(`[DAO] searching the streams of the following streamer id -> ${id}`);
     let resp = await axios.get(`${config.apiEndpoint}streamers/${id}?key=${config.apiSecret}`, {cancelToken: source.token});
-    console.log(resp.data);
     return resp.data;
   } catch (error) {
     throw error;
