@@ -70,7 +70,7 @@ const InfoPage = function() {
         <>
           <StreamerInfo {...streamerData} />
 
-          <Link id='insights'>
+          <Link to={`/streamer/${id}/insights`}id='insights'>
             Get Insights
           </Link>
 
