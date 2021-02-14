@@ -38,6 +38,14 @@ async function searchTwitterFake(query){
   });
 }
 
+async function submitUsersFake(twitchStreamer, twitterUser) {
+  return new Promise(function (resolve, reject) {
+    setTimeout(() => {
+      resolve({msg: 'ok'});
+    }, 1000);
+  });
+}
+
 async function searchStreamerOnMango(query) {
   return new Promise(function (resolve, reject) {
     setTimeout(() => {
@@ -61,6 +69,7 @@ const searchDao = {
   searchStreamerOnLine,
 
   searchTwitterFake,
+  submitUsersFake,
 
   searchStreamerOnMango,
   cancelRequest

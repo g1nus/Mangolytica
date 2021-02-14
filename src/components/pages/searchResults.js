@@ -1,4 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
+import { useHistory } from "react-router-dom";
 
 import {searchDao} from 'dao/search.dao';
 import Loading from 'components/svg/loading';
@@ -8,6 +9,9 @@ import TwitterUser from 'components/modules/search/twitterUser';
 
 const SearchResults = function(props) {
 
+  //history ref
+  let history = useHistory();
+
   //search results of our own platform
   const [searchResultsMango, setSearchResultsMango] = useState(undefined);
   //search results from the web
@@ -15,6 +19,8 @@ const SearchResults = function(props) {
 
   //fake twitter search results
   const [searchResultsTwitter, setSearchResultsTwitter] = useState(undefined);
+  //loading submission flag
+  const [loadSubmission, setLoadSubmission] = useState(false);
 
   //query to search
   const [query, setQuery] = useState([]);
@@ -73,6 +79,21 @@ const SearchResults = function(props) {
     setSearchResultsTwitter(newTwitterUserList);
   }
 
+  //function for submitting the new users to monitor
+  async function submitMonitor() {
+    setLoadSubmission(true);
+    const twitchStreamer = searchResults.find((streamer) => streamer.selected);
+    const twitterUser = searchResultsTwitter.find((user) => user.selected);
+
+    console.log('selected the following users to monitor', twitchStreamer, twitterUser);
+
+    const resp = await searchDao.submitUsersFake(twitchStreamer, twitterUser);
+    console.log(resp);
+
+    history.push(`/search`);
+    
+  }
+
   return (
     <div id='search-results-wrapper'>
       <p className='title'>Results for "<span>{query}</span>" on our plaftorm</p>
@@ -96,7 +117,7 @@ const SearchResults = function(props) {
       </div>
 
       <p className='title'>Results for "<span>{query}</span>" on the web</p>
-      {(searchResults) ? <p id='title-tip'>Please select the Twitch and Twitter official accounts of the person you're looking for</p> : <></>}
+      {(searchResults && searchResultsTwitter) ? <p id='title-tip'>Please select the Twitch and Twitter official accounts of the person you're looking for</p> : <></>}
 
       <div id='web-results-wrapper'>
         {(!searchResults || !searchResultsTwitter) ? 
@@ -104,7 +125,7 @@ const SearchResults = function(props) {
             <Loading />
           </div> 
         : 
-          ((searchResults.length === 0) ? 
+          ((searchResults.length === 0 || searchResultsTwitter.length === 0) ? 
             <p id='no-web-results'>nothing matched in the web</p> 
           :
             <>
@@ -130,6 +151,18 @@ const SearchResults = function(props) {
           </>)
         }
       </div>
+      {(searchResultsTwitter?.some(user => user.selected) && searchResults?.some(streamer => streamer.selected) && !loadSubmission) ?
+        <button id='submit-users' onClick={() => {submitMonitor()}}>
+          Start Monitoring
+        </button>
+        : ((searchResultsTwitter?.some(user => user.selected) && searchResults?.some(streamer => streamer.selected)) ? 
+            <button id='submit-users'>
+              Submitting Users...
+            </button>
+          :
+          <></>
+        )
+      }
     </div>
   );
 }

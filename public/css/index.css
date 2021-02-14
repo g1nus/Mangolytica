@@ -71,6 +71,9 @@
 input:focus, button:focus, button{
   outline: none;
 }
+button{
+  border: none;
+}
 a{
   text-decoration: none;
   color: black;

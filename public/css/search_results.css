@@ -153,7 +153,7 @@ div#search-results-wrapper div#web-results-loading{
   margin: 20px auto 0px auto;
 }
 div#search-results-wrapper p#no-web-results{
-  margin: 20px 0px 0px 0px;
+  margin: 20px auto 0px auto;
   
   text-align: center;
   font-size: 16px;
@@ -337,6 +337,23 @@ div.web-twitch-streamer-grid p.description, div.web-twitter-user-grid p.descript
   -webkit-box-orient: vertical;
 }
 
+button#submit-users{
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  z-index: 2;
+  
+  height: 50px;
+  border-radius: 25px;
+  width: 270px;
+
+  font-size: 23px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  animation: hue 90s ease-in-out 0s infinite forwards;
+}
 
 /*MOBILE*/
 @media only screen and (max-width: 600px) {
