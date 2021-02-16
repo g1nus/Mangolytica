@@ -1,10 +1,11 @@
 import React, {useRef, useEffect, useState} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {Link, Switch, Route, useParams} from 'react-router-dom';
 
 import {streamDao} from 'dao/stream.dao';
-import StreamInfo from 'components/modules/infopage/streamInfo';
 import StreamerInfo from 'components/modules/infopage/streamerInfo';
-import TweetInfo from 'components/modules/infopage/tweetInfo';
+import StreamsList from 'components/modules/infopage/streamsList';
+import TweetsList from 'components/modules/infopage/tweetsList';
+import Insights from './insights';
 
 const InfoPage = function() {
 
@@ -70,37 +71,26 @@ const InfoPage = function() {
         <>
           <StreamerInfo {...streamerData} />
 
-          <Link to={`/streamer/${id}/insights`}id='insights'>
-            Get Insights
-          </Link>
+          <Switch>
 
-          {((streamerData.streams.length === 0) ? 
-            <p id='no-mango-match'>no streams yet</p> 
-          : 
-            <div id='streams-tweets-wrapper'>
-              <div id='streams-list'>
-                <p id='streams-list-title'>Past streams</p>
-                {
-                  streamerData.streams.map((result, index) =>( 
-                    <div key={index}> 
-                      <StreamInfo {...result} id={id} />
-                    </div>
-                  ))
-                }
+            <Route exact path={`/streamer/${id}`}>
+              <Link to={`/streamer/${id}/insights`} id='insights'>
+                Get Insights
+              </Link>
+              <div id='streams-tweets-wrapper'>
+                <StreamsList streams={streamerData.streams} id={id}/>
+                <TweetsList tweets={tweetsData} />
               </div>
-              <div id='tweets-list'>
-                <p id='tweets-list-title'>
-                  Past tweets
-                </p>
-                {
-                  tweetsData.map((result, index) => (
-                    <div key={index}>
-                      <TweetInfo {...result} />
-                    </div>
-                  ))
-                }
-              </div>
-          </div>)}
+            </Route>
+
+            <Route exact path={`/streamer/${id}/insights`}>
+              <Link to={`/streamer/${id}`} id='insights'>
+                Back to streams and tweets
+              </Link>
+              <Insights id={id} />
+            </Route>
+            
+          </Switch>
         </>
       }
       </div>

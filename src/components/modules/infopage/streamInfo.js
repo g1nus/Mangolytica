@@ -10,6 +10,8 @@ const StreamInfo = function({id, streamId, thumbnail, title, startedAt}) {
   const date = startedAt.substring(0, tIndex);
   const time = startedAt.substring(tIndex + 1, zIndex);
 
+  console.log(`ID: ${id} - STREAMID: ${streamId}`)
+
   return (
     <Link to={`/streamer/${id}/stream/${streamId}`}>
       <div className='stream-info'>

@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
-const Insights = function(props) {
-
-  let { id } = useParams();
+const Insights = function({id}) {
 
   const [data, setData] = useState(
     [
