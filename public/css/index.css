@@ -147,6 +147,23 @@ code {
   stroke-linejoin:round;
   stroke-miterlimit:10;
 }
+.st0-info-icon{
+  fill:none;
+  stroke:#484848;
+  stroke-width:36;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
+.st1-info-icon{
+  fill:none;
+  stroke:#6d6d6d;
+  stroke-width:83;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

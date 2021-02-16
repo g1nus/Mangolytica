@@ -1,3 +1,4 @@
+import Info from 'components/svg/info';
 import React, {useState} from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
@@ -105,16 +106,89 @@ const Insights = function({id}) {
   )
 
   return (
-    <>
-      insights page for {id}
-      <LineChart width={600} height={300} data={data}>
-        <Line type="monotone" dataKey="counts" stroke="#8884d8" />
-        <CartesianGrid stroke="#ccc" />
-        <Tooltip />
-        <XAxis dataKey="date" />
-        <YAxis dataKey="counts" />
-      </LineChart>
-    </>
+    <div id='insights-wrapper'>
+      <p id='mango-score'>
+        Mango score is: <span id='score'> 48 </span>
+      </p>
+      <div className='insight-graph-wrapper'>
+        <p className='insight-graph-title'>
+          Title of graph
+        </p>
+        <div className='insight-info'>
+          <div className='insight-info-icon'>
+            <Info />
+          </div>
+          <div className='insight-tooltip'>
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+          </div>
+        </div>
+        <div className='chart-wrapper'>
+          <LineChart width={500} height={300} data={data}>
+            <Line type="monotone" dataKey="counts" stroke="#8884d8" />
+            <CartesianGrid stroke="#ccc" />
+            <Tooltip />
+            <XAxis dataKey="date" />
+            <YAxis dataKey="counts" />
+          </LineChart>
+        </div>
+      </div>
+
+      <div className='insight-graph-wrapper'>
+        <p className='insight-graph-title'>
+          Title of graph
+        </p>
+        <div className='insight-info'>
+          <div className='insight-info-icon'>
+            <Info />
+          </div>
+          <div className='insight-tooltip'>
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+          </div>
+        </div>
+        <div className='chart-wrapper'>
+          <LineChart width={500} height={300} data={data}>
+            <Line type="monotone" dataKey="counts" stroke="#8884d8" />
+            <CartesianGrid stroke="#ccc" />
+            <Tooltip />
+            <XAxis dataKey="date" />
+            <YAxis dataKey="counts" />
+          </LineChart>
+        </div>
+      </div>
+
+      <div className='insight-graph-wrapper'>
+        <p className='insight-graph-title'>
+          Title of graph
+        </p>
+        <div className='insight-info'>
+          <div className='insight-info-icon'>
+            <Info />
+          </div>
+          <div className='insight-tooltip'>
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+            Basic info about what the stat should be
+          </div>
+        </div>
+        <div className='chart-wrapper'>
+          <LineChart width={500} height={300} data={data}>
+            <Line type="monotone" dataKey="counts" stroke="#8884d8" />
+            <CartesianGrid stroke="#ccc" />
+            <Tooltip />
+            <XAxis dataKey="date" />
+            <YAxis dataKey="counts" />
+          </LineChart>
+        </div>
+      </div>
+
+    </div>
   );
 }
 

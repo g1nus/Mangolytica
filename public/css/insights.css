@@ -1,0 +1,80 @@
+div#insights-wrapper{
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+div#insights-wrapper p#mango-score{
+  margin: 0px 0px 20px 0px;
+  width: 100%;
+  text-align: center;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+div#insights-wrapper p#mango-score span#score{
+  color: #b5db00;
+  animation: hue-text 90s ease-in-out 0s infinite forwards;
+}
+
+div#insights-wrapper div.insight-graph-wrapper{
+  position: relative;
+  margin: 10px 10px 10px 10px;
+  width: 600px;
+  /*border: solid 1px greenyellow;*/
+}
+
+div.insight-graph-wrapper p.insight-graph-title{
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+div.insight-graph-wrapper div.insight-info{
+  position: absolute;
+  top: 15px;
+  right: 75px;
+}
+div.insight-info div.insight-info-icon{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 20px;
+  width: 20px;
+}
+
+div.insight-info div.insight-info-icon svg.info-icon{
+  width: 95%;
+  height: 95%;
+}
+
+div.insight-info div.insight-tooltip{
+  position: absolute;
+  top: 23px;
+  right: 0px;
+  width: 220px;
+  border: solid 1px #bfbfbf;
+  z-index: 5;
+  padding: 5px 5px 5px 5px;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 13px;
+  font-weight: 400;
+  color: #484848;
+  display: none;
+}
+div.insight-info:hover div.insight-tooltip{
+  display: block;
+}
+
+div.chart-wrapper{
+  /*border: solid 1px violet;*/
+}
+
+div.chart-wrapper div.recharts-wrapper{
+  margin: 0px auto 20px 5%;
+}
