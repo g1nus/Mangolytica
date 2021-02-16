@@ -4,11 +4,9 @@ import config from 'config';
 
 const source = axios.CancelToken.source();
 
-async function getStream(id) {
+async function getStream(streamerId, streamId) {
   try {
-    console.log(`[DAO] searching the following id -> ${id}`);
-    let resp = await axios.get(`${config.apiEndpoint}streams/${id}?key=${config.apiSecret}`, {cancelToken: source.token});
-    console.log(resp.data);
+    let resp = await axios.get(`${config.apiEndpoint}streamers/${streamerId}/streams/${streamId}?key=${config.apiSecret}`, {cancelToken: source.token});
     return resp.data;
   } catch (error) {
     throw error;

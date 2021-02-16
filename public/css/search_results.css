@@ -144,6 +144,7 @@ div#search-results-wrapper div#web-results-wrapper{
 }
 div#search-results-wrapper div#web-results-wrapper div#twitter-results, div#search-results-wrapper div#web-results-wrapper div#twitch-results{
   width: 430px;
+  margin: 10px auto 10px auto;
   /*border: solid 1px violet;*/
 }
 
