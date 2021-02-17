@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
+import { auth } from "services/firebase"
 import Error from 'components/modules/error';
 
 //create a context object
@@ -9,12 +10,8 @@ const AppProvider = function (props) {
 
   //user data
   const [user, setUser] = useState(null);
-  //user data fetch flag
-  const [userFetch, setUserFetch] = useState(true);
   //error
   const [error, setError] = useState(null);
-  //title
-  const [title, setTitle] = useState(<div className="nav-elements"> <h2 className="static-title">HOME</h2> </div>);
   //notification message
   const [notificationMessage, setNotificationMessage] = useState(undefined);
 
@@ -22,12 +19,8 @@ const AppProvider = function (props) {
   const contextObject ={
       user,
       setUser,
-      userFetch,
-      setUserFetch,
       error,
       setError,
-      title,
-      setTitle,
       notificationMessage,
       setNotificationMessage,
   };
@@ -35,9 +28,13 @@ const AppProvider = function (props) {
 
   //effect on context mount to fetch user data if he's logged
   useEffect(() => {
-    if(props.testing){ //data setup for testing
-      setUser({name: `testing`, surname: `boi`, emai: `test@test.com`})
-    }
+    auth.onAuthStateChanged(async (user) => {
+      if(user){
+        setUser({name: user.displayName, picture: user.photoURL});
+      }else{
+        setUser(null);
+      }
+    })
   }, [])
 
   //if there isn't error

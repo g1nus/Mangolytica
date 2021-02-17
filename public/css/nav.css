@@ -46,18 +46,76 @@ nav a#nav-logo-wrapper div.nav-logo-underbar#two{
 nav div#nav-user{
   grid-area: profile;
   justify-self: right;
+  align-self: start;
+  position: relative;
+  margin: 0px 20px 0px 0px;
+  border-radius: 50%;
+  min-height: 58px;
+}
+
+nav div#nav-user img#user-propic{
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: solid 1px #9d3700;
+  margin: 7px 0px 0px 0px;
+}
+
+nav div#nav-user-loggedout{
+  grid-area: profile;
+  justify-self: right;
   align-self: center;
   position: relative;
   margin: 0px 20px 0px 0px;
-  width: 44px;
+  width: 230px;
   height: 44px;
-
-  border-radius: 50%;
-  border: solid 1px #9d3700;
-  overflow: hidden;
 }
 
-div#nav-user img#user-propic{
+nav div#nav-user-loggedout button.login-button{
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
   height: 100%;
   width: 100%;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: white;
+  border: solid 1px #dddddd;
+  padding: 0px 10px 0px 10px;
+  border-radius: 7px;
+}
+nav div#nav-user-loggedout button.login-button:hover{
+  box-shadow: 0px 0px 7px -6px rgba(0,0,0,0.75);
+}
+nav div#nav-user-loggedout button.login-button img{
+  margin: 7px 0px 0px 0px;
+}
+nav div#nav-user-loggedout button.login-button span{
+
+  line-height: 42px;
+  font-size: 17px;
+}
+
+nav div#nav-user:hover button.signout-button{
+  display: block;
+}
+
+button.signout-button{
+  display: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 400;
+  position: absolute;
+  top: 58px;
+  right: -20px;
+  padding: 5px 5px 5px 5px;
+  width: 100px;
+  font-size: 14px;
+  background-color: #fffcfa;
+  border: solid 1px #fff6ee;
+  border-radius: 0px 0px 10px 10px;
+  color: #9b5c5c;
 }
