@@ -25,3 +25,13 @@ export const signOutFromGoogle = () => {
     console.log(error.message);
   });
 }
+
+export const getToken = () => {
+  return new Promise(async function (resolve, reject) {
+    auth.currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+      resolve(idToken);
+    }).catch(function(error) {
+      reject(error)
+    });
+  });
+}
