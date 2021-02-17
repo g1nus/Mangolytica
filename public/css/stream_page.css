@@ -1,6 +1,93 @@
+div.chat-bar{
+  width: 831px;
+  height: 20px;
+  background-color: aliceblue;
+  display: flex;
+  margin: 0px 0px 0px 68px 
+}
+div.chat-bar div.tunit{
+  position: relative; 
+  display: inline-flex; 
+  height: 100%; 
+  border: solid 1px black;
+  flex-grow: 1;
+}
+
+div.chat-bar div.tunit div.tunit-color{
+  width: 100%;
+  height: 100%;
+  background-color: red;
+}
+
+
 div.tunit-msgs{
   display: none;
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  padding: 5px 10px 5px 10px;
+  border-radius: 6px;
 }
 div.tunit:hover div.tunit-msgs{
+  display: block;
+}
+div.tunit-color div.word-info{
+  margin: 1px auto 1px auto;
+}
+div.word-info p.word{
+  line-height: 15px;
+  margin: 2px 0px 0px 0px;
+  text-align: center;
+}
+div.word-info p.word-count{
+  font-size: 10px;
+  font-weight: 300;
+  margin: 0px 0px 5px 0px;
+  text-align: center;
+}
+
+div.custom-tooltip{
+  background-color: white;
+  max-width: 200px;
+  padding: 3px 6px 3px 3px;
+  border: solid 1px #bf00a8;
+  border-radius: 5px;
+  color: #484848;
+}
+
+div.custom-tooltip-extra-info{
+  display: flex;
+  width: 100%;
+  padding: 0px 4px 0px 4px;
+  justify-content: space-between;
+}
+div.custom-tooltip-extra-info span{
+  display: inline-block;
+  font-size: 10px;
+}
+div.custom-tooltip-extra-info span.tooltip-time{
+  padding: 0px 10px 0px 0px;
+}
+div.custom-tooltip p.tooltip-title{
+  font-size: 13px;
+  margin: 0px;
+}
+
+
+div.raid-label{
+  background-color: #f1c9ff;
+  font-size: 10px;
+  padding: 1px;
+  border-radius: 0px 4px 4px 0px;
+}
+div.raid-label p{
+  margin: 0px 1px 1px 1px;
+}
+
+div.raid-label p.raid-hour{
+  display: none;
+}
+div.raid-label:hover p.raid-hour{
   display: block;
 }

@@ -8,8 +8,12 @@ import {emotesDao} from 'dao/emotes.dao';
 function CustomTooltip({ payload, label, active }) {
   if (active && payload) {
     return (
-      <div className="custom-tooltip" style={{backgroundColor: 'white', width: '180px', fontSize: '10px'}}>
-        <p className="label">{`${payload[0].payload.createdAt}`}<br/>{`${payload[0].payload.title}`}<br/>{`${payload[0].payload.gameName}`}</p>
+      <div className="custom-tooltip">
+        <p className='tooltip-title'>{`${payload[0].payload.title}`}</p>
+        <div className='custom-tooltip-extra-info'>
+          <span className='tooltip-time'>{`${payload[0].payload.createdAt}`}</span>
+          <span className='tooltip-game'>{`${payload[0].payload.gameName}`}</span>
+        </div>
       </div>
     );
   }
@@ -17,26 +21,28 @@ function CustomTooltip({ payload, label, active }) {
   return null;
 }
 
-const renderCustomAxisTick = ({ x, y, payload, dx, dy }) => {
-
-  let time = new Date(payload.value);
+const customTickFormatter = (item) => {
+  let time = new Date(item);
   let hours = (time.getHours() === 0) ? 23 : time.getHours() - 1;
   let minutes = time.getMinutes();
-  if(minutes === '0') minutes+='0'
+  console.log(minutes);
+  if(minutes < 10) minutes='0'+minutes;
 
-
-  return (
-    <text x={x} y={y + 20} fill="#666" textAnchor="middle" dx={dx} dy={dy}>{`${hours}:${minutes}`}</text>
-  );
-};
+  return `${hours}:${minutes}`;
+}
 
 export function ReferenceLabel({label, viewBox}) {;
   return (
-      <text 
-          x={viewBox.x} y={260}
-          fontSize={10} >
+    <foreignObject x={viewBox.x + 1} y={230} width={70 + ((label.user.length > 8) ? (label.user.length - 8) * 2.8 : 0)} height="30">
+      <div className='raid-label' xmlns="http://www.w3.org/1999/xhtml">
+        <p xmlns="http://www.w3.org/1999/xhtml">
           {label.user}
-      </text>
+        </p>
+        <p className='raid-hour' xmlns="http://www.w3.org/1999/xhtml">
+          {label.createdAt}
+        </p>
+      </div>
+    </foreignObject>
   )
 }
 
@@ -104,14 +110,17 @@ const StreamPage = function() {
             <>loading...</>
           :
           <LineChart width={900} height={300} data={stream.tunits}>
-            <Line type="monotone" dataKey="viewers" stroke="#8884d8" />
+            <Line type="monotone" dataKey="viewers" stroke="#5A3E85" dot={{strokeWidth: 1, r: 2}}/>
             <CartesianGrid stroke="#ccc" />
             <Tooltip content={<CustomTooltip />}/>
-            <XAxis dataKey="ms" tick={false/*renderCustomAxisTick*/}> 
-              <Label value="Time" offset={0} position="insideBottom" />
+            <XAxis width={100} dataKey="ms" type='number' domain={[stream.tunits[0].ms, stream.tunits[stream.tunits.length - 1].ms]} 
+              interval='preserveStartEnd'
+              tickCount={10}
+              minTickGap={20}
+              tickFormatter={customTickFormatter}> 
             </XAxis>
             {events?.raids?.map((raid, index) => {
-              return <ReferenceLine key={index} x={stream.tunits.find(tunit => parseInt(tunit.ms, 10) > raid.ms).ms} stroke="red" label={<ReferenceLabel label={{createdAt: raid.createdAt, user: raid.user}}/>} />
+              return <ReferenceLine key={index} x={raid.ms} stroke="#cb3cff" strokeDasharray='3 3' label={<ReferenceLabel label={{createdAt: raid.createdAt, user: raid.user}}/>} />
             })}
             <YAxis dataKey="viewers" />
           </LineChart>
@@ -119,25 +128,35 @@ const StreamPage = function() {
       </div>
 
       <div className='chat-analysis'>
-        {stream?.length}
-        <div className='chat-bar' style={{width: 800 + 'px',height: 20 + 'px', backgroundColor: 'grey'}}>
+        <div className='chat-bar'>
           {
             events?.chatTunits?.map((chatTunit, idx) => {
               let length = 0;
               if(idx === 0){
-                length = (chatTunit.ms - stream?.tunits[0].ms) / stream?.length * 100;
+                length = (chatTunit.ms - stream?.tunits[0].ms) / stream?.length;
               }else{
-                length = (chatTunit.ms - events?.chatTunits[idx-1].ms) / stream?.length * 100;
+                length = (chatTunit.ms - events?.chatTunits[idx-1].ms) / stream?.length;
+              }
+              let rgb = [0, 0, 184];
+              let maxWord = chatTunit.topWords[0].count;
+              if(maxWord > 3000){
+                rgb[0] = (1 - length) * 255;
+              }else if(maxWord > 1000){
+                rgb[0] = (1 - length) * 200;
+              }else{
+                rgb[0] = (1 - length) * 155;
               }
               return(
-                <div className='tunit' key={idx} style={{position: 'relative', display: 'inline-block', height:'100%', width: length + '%', border: 'solid 1px white'}}>
-                  <div className='tunit-msgs' style={{position:'absolute', top: '25px', left: '0px', width: '30px', height:'160px', backgroundColor:'aliceblue'}}>
+                <div className='tunit' key={idx} style={{width: (length * 100) + '%'}}>
+                  <div className='tunit-color' style={{backgroundColor: `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`}}>
+                  </div>
+                  <div className='tunit-msgs' style={{backgroundColor: `rgb(${255 - (rgb[0]/255*50)}, ${255}, ${255})`}}>
                     {
                       chatTunit?.topWords.map((word, idy) => {
                         return (
-                          <div key={idx + idy}>
-                          <p style={{margin: '0px'}}> {(emotes[word.word]) ?  <img src={emotes[word.word]} alt={word.word} height="25"/>  : <>{word.word}</>} </p>
-                          <p style={{margin: '0px', fontSize:'8px'}}> ({word.count}) </p>
+                          <div className='word-info' key={idx + idy}>
+                          <p className='word'> {(emotes[word.word]) ?  <img src={emotes[word.word]} alt={word.word} height="33"/>  : <>{word.word}</>} </p>
+                          <p className='word-count'> ({word.count}) </p>
                           </div>
                         )
                       })
