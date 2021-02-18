@@ -90,7 +90,7 @@ const SearchResults = function(props) {
     const resp = await searchDao.submitUsersFake(twitchStreamer, twitterUser);
     console.log(resp);
 
-    history.push(`/search?submitted=true`);
+    history.push(`/?submitted=true`);
     
   }
 
