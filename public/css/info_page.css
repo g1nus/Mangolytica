@@ -1,17 +1,18 @@
 div#streamer-info{
   width: 640px;
   margin: 10px auto 0px auto;
+  position: relative;
 
   display: grid;
-  grid-template-columns: 20px 160px 20px auto 20px;
+  grid-template-columns: 20px 160px 20px auto 50px 20px;
   grid-template-rows: 15px 50px 35px 75px auto 20px;
   grid-template-areas: 
-   ". . . . ."
-   ". propic . name ."
-   ". propic . socials ."
-   ". propic . description ."
-   ". . . description ."
-   ". . . . .";
+   ". . . . . ."
+   ". propic . name star ."
+   ". propic . socials socials ."
+   ". propic . description description ."
+   ". . . description description ."
+   ". . . . . .";
   grid-auto-rows: max-content;
 
   align-content: stretch;
@@ -33,7 +34,7 @@ div#streamer-info p#name{
   margin: 0px;
 
   grid-area: name;
-  justify-self: stretch;
+  justify-self: start;
   align-self: start;
 
   text-align: left;
@@ -43,7 +44,7 @@ div#streamer-info p#name{
 
 div#streamer-info div#streamer-socials-wrapper{
   grid-area: socials;
-  justify-self: stretch;
+  justify-self: start;
   align-self: start;
   position: relative;
 
@@ -74,7 +75,7 @@ div#streamer-info p#description{
   margin: 10px 0px 0px 0px;
 
   grid-area: description;
-  justify-self: stretch;
+  justify-self: start;
   align-self: start;
   position: relative;
   font-size: 16px;
@@ -82,6 +83,22 @@ div#streamer-info p#description{
 
   text-align: justify;
 }
+
+div#streamer-info div#favorite-streamer-wrapper{
+  grid-area: star;
+  justify-self: stretch;
+  align-self: stretch;
+  position: relative;
+
+  cursor: pointer;
+}
+
+div#streamer-info div#favorite-streamer-wrapper svg.star-icon{
+  width: 40px;
+  height: 40px;
+  margin: 4px 6px 6px 4px;
+}
+
 a#insights{
   margin: 0px auto 20px auto;
   display: block;

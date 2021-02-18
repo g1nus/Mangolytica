@@ -1,6 +1,6 @@
 div#search-wrapper{
   width: 800px;
-  margin: 100px auto;
+  margin: 100px auto 0px auto;
 }
 
 div#search-wrapper *{
@@ -44,31 +44,43 @@ div#search-wrapper form#search-form button[type=submit]{
   border-radius: 20px;
 }
 
-div#search-wrapper div#trending-streamers{
+div#search-wrapper div#trending-streamers, div#search-wrapper div#favourite-streamers{
   margin: 0 auto;
   width: 700px;
 }
 
-div#search-wrapper div#trending-streamers p{
-  margin: 30px 0 20px 0;
-
+div#search-wrapper div#trending-streamers p, div#search-wrapper div#favourite-streamers p{
   text-align: center;
   font-size: 25px;
   font-weight: 700;
 }
 
-div#search-wrapper div#trending-streamers div#img-wrapper{
+div#search-wrapper div#trending-streamers p{
+  margin: 30px 0 10px 0;
+}
+
+div#search-wrapper div#favourite-streamers p{
+  margin: 20px 0 10px 0;
+}
+
+div#search-wrapper div#trending-streamers div#img-wrapper, div#search-wrapper div#favourite-streamers div#img-wrapper{
   display: flex;
   justify-content: center;
 }
 
-div#search-wrapper div#trending-streamers div#img-wrapper img.streamer-propic-trending{
+div#search-wrapper div#trending-streamers div#img-wrapper img.streamer-propic-trending, div#search-wrapper div#favourite-streamers div#img-wrapper img.streamer-propic-favourite{
   margin: 0px 10px 0px 10px;
   width: 67px;
   height: 67px;
   
   border-radius: 50%;
+}
+
+div#search-wrapper div#trending-streamers div#img-wrapper img.streamer-propic-trending{
   border: solid 2px #ff9100;
+}
+div#search-wrapper div#favourite-streamers div#img-wrapper img.streamer-propic-favourite{
+  border: solid 2px #0066ff;
 }
 
 div#search-wrapper p#submitted-info{

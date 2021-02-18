@@ -1,34 +1,74 @@
-import React from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 
 import TwitchLogo from 'components/svg/twitchLogo';
 import TwitterLogo from 'components/svg/twitterLogo';
+import Star from 'components/svg/star';
 
-const StreamerInfo = function({profilePicture, displayName, loginName, followers, description}) {
+import {AppContext} from 'components/providers/appProvider';
+import {favoritesDao} from 'dao/favorites.dao';
 
-return (
-  <div id='streamer-info'>
+const StreamerInfo = function({profilePicture, displayName, loginName, followers, description, /*fake default value*/ starred = false}) {
 
-    <img src={profilePicture} id='streamer-pic' />
+  const [star, setStar] = useState(starred);
 
-    <p id='name'>{displayName}</p>
+  const [loadSubmission, setLoadSubmission] = useState(false);
 
-    <div id='streamer-socials-wrapper'>
-      <div id='streamer-socials'>
-        <div id='streamer-twitch'>
-          <span id='twitch-inline-logo'><TwitchLogo /></span> <span className='text'>@{loginName} | <i>{followers} followers</i></span>
-        </div>
-        <div id='streamer-twitter'>
-          <span id='twitter-inline-logo'><TwitterLogo /></span> <span className='text'>@user_1 | <i>1273 followers</i></span>
+  //get data from global context
+  const appConsumer = useContext(AppContext);
+
+  //reference and mount cycle handler
+  const isMounted = useRef(true);
+  useEffect(() => {
+    return () => {
+      isMounted.current = false
+    }
+  }, []); 
+
+  //function for submitting starred streamer
+  async function submitStar() {
+    setLoadSubmission(true);
+    try{
+      const submission = await favoritesDao.submitFavoriteFake(1111, '11111');
+      if(isMounted.current) {console.log('done!'); setLoadSubmission(false); setStar(!star);}
+    }catch (err){
+      console.log(err);
+    }
+
+  }
+
+  return (
+    <div id='streamer-info'>
+
+      <img src={profilePicture} id='streamer-pic' />
+
+      <p id='name'>{displayName}</p>
+
+      <div id='streamer-socials-wrapper'>
+        <div id='streamer-socials'>
+          <div id='streamer-twitch'>
+            <span id='twitch-inline-logo'><TwitchLogo /></span> <span className='text'>@{loginName} | <i>{followers} followers</i></span>
+          </div>
+          <div id='streamer-twitter'>
+            <span id='twitter-inline-logo'><TwitterLogo /></span> <span className='text'>@user_1 | <i>1273 followers</i></span>
+          </div>
         </div>
       </div>
+
+      <p id='description'>
+        {description}
+      </p>
+
+      {
+        (appConsumer.user) ?
+          <div id='favorite-streamer-wrapper' onClick={submitStar} style={{pointerEvents: (loadSubmission) ? 'none' : '', opacity: (loadSubmission) ? '0.5' : '1.0'}}>
+            <Star starred={star}/>
+          </div>
+        :
+          <></>
+      }
+
     </div>
-
-    <p id='description'>
-      {description}
-    </p>
-
-  </div>
-);
+  );
 }
 
 export default StreamerInfo;

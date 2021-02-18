@@ -164,6 +164,13 @@ code {
   stroke-miterlimit:10;
 }
 
+.st0-star-icon{
+  stroke:#FFDF11;
+  stroke-width:36;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-miterlimit:10;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
