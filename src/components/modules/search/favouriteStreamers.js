@@ -2,6 +2,8 @@ import React, {useRef, useEffect, useState, useContext} from 'react';
 
 import {AppContext} from 'components/providers/appProvider';
 import {favoritesDao} from 'dao/favorites.dao';
+import {getToken} from 'services/firebase';
+import { Link } from 'react-router-dom';
 
 const FavouriteStreamers = function(props) {
 
@@ -17,7 +19,8 @@ const FavouriteStreamers = function(props) {
 
     const fetchData = async () => {
       try{
-        let favoriteStreamers = await favoritesDao.fetchFavoritesFake();
+        const token = await getToken();
+        let favoriteStreamers = await favoritesDao.fetchFavorites(token);
         if(isMounted.current) setFavorites(favoriteStreamers);
       
       }catch (err){
@@ -46,7 +49,11 @@ const FavouriteStreamers = function(props) {
         <>
           <p>Your Favourite Streamers</p>
           <div id='img-wrapper'>
-            {favorites.map((streamer, idx) => <img key={idx} src={streamer.profile_image} className='streamer-propic-favourite' />)}
+            {favorites.map((streamer, idx) => (
+              <Link key={idx} to={`/streamer/${streamer.twitterInfo.loginName}`}>
+                <img key={idx} src={streamer.twitchInfo.profilePicture} className='streamer-propic-favourite' />
+              </Link>
+            ))}
           </div>
         </>
       :

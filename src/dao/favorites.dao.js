@@ -5,25 +5,13 @@ import config from 'config';
 const source = axios.CancelToken.source();
 
 
-async function fetchFavoritesFake(userToken){
-  return new Promise(function (resolve, reject) {
-    setTimeout(() => {
-      resolve([
-        {
-          profile_image: "http://placekitten.com/200/200"
-        },
-        {
-          profile_image: "http://placekitten.com/300/300"
-        },
-        {
-          profile_image: "http://placekitten.com/400/400"
-        },
-        {
-          profile_image: "http://placekitten.com/1000/1000"
-        }
-      ]);
-    }, 1000);
-  });
+async function fetchFavorites(userToken){
+  try {
+    let resp = await axios.get(`${config.apiEndpoint}favorites?g_token=${userToken}`, {cancelToken: source.token});
+    return resp.data;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function submitFavoriteFake(userToken, streamerId) {
@@ -42,7 +30,7 @@ function cancelRequest () {
 
 const favoritesDao = {
 
-  fetchFavoritesFake,
+  fetchFavorites,
   submitFavoriteFake,
 
   cancelRequest

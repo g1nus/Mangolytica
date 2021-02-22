@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 
-const StreamInfo = function({id, streamId, thumbnail, title, startedAt}) {
+const StreamInfo = function({id, streamId, thumbnail, title, startedAt, gameName}) {
 
   //extract date and time from timestamp string
   const tIndex = startedAt.indexOf("T");
@@ -17,7 +17,7 @@ const StreamInfo = function({id, streamId, thumbnail, title, startedAt}) {
       <div className='stream-info'>
         <img src={thumbnail} className='stream-thumbnail' /> 
         <p className='title' title={title}>{title}</p>
-        <p className='views'>17455 cumulative views</p>
+        <p className='views'>Starting Game: {gameName}</p>
         <p className='started-at'>{date} {time} UTC</p>
       </div>
     </Link> 

@@ -7,7 +7,7 @@ import Star from 'components/svg/star';
 import {AppContext} from 'components/providers/appProvider';
 import {favoritesDao} from 'dao/favorites.dao';
 
-const StreamerInfo = function({profilePicture, displayName, loginName, followers, description, /*fake default value*/ starred = false}) {
+const StreamerInfo = function({profilePicture, twitchName, twitchLoginName, twitchFollowers, twitchDescription, twitterLoginName, twitterFollowers,/*fake default value*/ starred = false}) {
 
   const [star, setStar] = useState(starred);
 
@@ -41,21 +41,21 @@ const StreamerInfo = function({profilePicture, displayName, loginName, followers
 
       <img src={profilePicture} id='streamer-pic' />
 
-      <p id='name'>{displayName}</p>
+      <p id='name'>{twitchName}</p>
 
       <div id='streamer-socials-wrapper'>
         <div id='streamer-socials'>
           <div id='streamer-twitch'>
-            <span id='twitch-inline-logo'><TwitchLogo /></span> <span className='text'>@{loginName} | <i>{followers} followers</i></span>
+            <span id='twitch-inline-logo'><TwitchLogo /></span> <span className='text'>@{twitchLoginName} | <i>{twitchFollowers} followers</i></span>
           </div>
           <div id='streamer-twitter'>
-            <span id='twitter-inline-logo'><TwitterLogo /></span> <span className='text'>@user_1 | <i>1273 followers</i></span>
+            <span id='twitter-inline-logo'><TwitterLogo /></span> <span className='text'>@{twitterLoginName} | <i>{twitterFollowers} followers</i></span>
           </div>
         </div>
       </div>
 
       <p id='description'>
-        {description}
+        {twitchDescription}
       </p>
 
       {
