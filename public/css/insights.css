@@ -154,6 +154,9 @@ div.extra-info p{
   font-weight: 400;
   color: #5c5c5c;
 }
+div.extra-info.no-sleep-bar p.total-subs{
+  margin: 4px 0px 0px 0px;
+}
 
 div#insights-wrapper div.extra-insights{
   position: relative;

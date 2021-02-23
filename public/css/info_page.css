@@ -158,6 +158,7 @@ div.stream-info img.stream-thumbnail{
   grid-area: thumbnail;
   justify-self: stretch;
   height: 90px;
+  border-radius: 3px;
 }
 div.stream-info p{
   margin: 0px;
@@ -211,6 +212,17 @@ div.tweet-info div.extra-info{
   color: #636363
 }
 
+div.l-r-info{
+  width: 110px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+div.l-r-info div.retweet-wrapper{
+  text-align: right;
+}
+
 div.extra-info span{
   display: inline-block;
 }
@@ -218,6 +230,7 @@ div.extra-info span{
 div.extra-info span.likes{
   height: 14px;
   width: 14px;
+  margin: 0px 2px 0px 0px;
 }
 div.extra-info span.likes svg.likes-icon{
   height: 100%;
@@ -228,7 +241,7 @@ div.extra-info span.likes svg.likes-icon{
 div.extra-info span.retweets{
   height: 14px;
   width: 14px;
-  margin: 0px 0px 0px 5px;
+  margin: 0px 0px 0px 2px;
 }
 div.extra-info span.retweets svg.retweets-icon{
   height: 100%;

@@ -34,6 +34,7 @@ div.stream-thumbnail-big div.timestamp{
   opacity: 0.7;
   font-weight: 600;
   padding: 2px 4px 2px 4px;
+  border-radius: 3px;
 }
 
 div.main-stream-info p.stream-title{
@@ -130,14 +131,21 @@ div.main-chart-wrapper div.insight-info-viewers:hover div.insight-tooltip{
   display: block;
 }
 
-div.chat-bar{
+div.chat-bar, div.game-bar{
   width: 831px;
   height: 20px;
   background-color: aliceblue;
   display: flex;
-  margin: 0px 0px 0px 68px 
+  border-radius: 4px;
 }
-div.chat-bar div.tunit{
+
+div.chat-bar{
+  margin: 0px 0px 0px 68px; 
+}
+div.game-bar{
+  margin: 10px 0px 0px 68px;
+}
+div.chat-bar div.tunit, div.game-bar div.game-tunit{
   position: relative; 
   display: inline-flex; 
   height: 100%; 
@@ -178,6 +186,44 @@ div.word-info p.word-count{
   font-weight: 300;
   margin: 0px 0px 5px 0px;
   text-align: center;
+}
+
+div.game-bar div.game-tunit div.game-tunit-info{
+  display: none;
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  padding: 3px 10px 4px 10px;;
+  border-radius: 6px;
+  background-color: #dbffff;
+  text-align: center;
+  z-index: 11;
+}
+
+div.game-bar div.game-tunit div.game-tunit-info p{
+  color: #151515;
+}
+div.game-bar div.game-tunit div.game-tunit-info p.game-tunit-name{
+  font-size: 15px;
+  margin: 3px auto 0px auto;
+}
+div.game-bar div.game-tunit div.game-tunit-info p.game-viewers{
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0px auto 5px auto;
+}
+div.game-bar div.game-tunit div.game-tunit-info p.game-tunit-duration{
+  margin: 3px auto 0px auto;
+  padding: 3px 0px 0px 0px;
+  width: 100px;
+  border-top: solid 1px #bfbfbf;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+div.game-bar div.game-tunit:hover div.game-tunit-info{
+  display: block;
 }
 
 div.custom-tooltip{
@@ -227,15 +273,32 @@ div.raid-label:hover p.raid-hour{
 
 div.extra-stream-info{
   width: 1285px;
-  margin: 50px auto;
+  margin: 30px auto 20px auto;
 }
 
 div.extra-stream-info div.insight-graph-wrapper {
   position: relative;
-  margin: 10px 10px 10px 10px;
+  margin: 10px auto 10px auto;
   width: 600px;
 }
 
 div.sub-info{
   top: 5px !important;
+}
+
+div.extra-stream-info div.stream-tweets-wrapper{
+  position: relative;
+  margin: 30px 10px 10px 10px;
+  width: 100%;
+}
+
+div.stream-tweets-wrapper div.stream-tweets-list{
+  width: 100%;
+  margin: 0px auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+div.stream-tweets-list div#tweets-list{
+  width: 420px;
 }

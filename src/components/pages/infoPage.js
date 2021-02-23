@@ -62,7 +62,7 @@ const InfoPage = function() {
               </Link>
               <div id='streams-tweets-wrapper'>
                 <StreamsList streams={streamerData.twitchInfo.streams} id={id}/>
-                <TweetsList tweets={streamerData.twitter_info.tweets} />
+                <TweetsList tweets={streamerData.twitter_info.tweets} title={'Past Tweets'}/>
               </div>
             </Route>
 
