@@ -20,6 +20,9 @@ const Main = function() {
         <Route path="/streamer/:id" children={<InfoPage />}/>
         <Route children={<NotFoundPage />}/>
       </Switch>
+      <div className='extra-margin'>
+        
+      </div>
     </>
   );
 }
