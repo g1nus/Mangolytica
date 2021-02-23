@@ -1,5 +1,5 @@
 div#insights-wrapper{
-  width: 95%;
+  width: 1285px;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -11,7 +11,7 @@ div#insights-wrapper p#mango-score{
   margin: 0px 0px 20px 0px;
   width: 100%;
   text-align: center;
-  font-size: 27px;
+  font-size: 30px;
   font-weight: 700;
 }
 
@@ -30,8 +30,8 @@ div#insights-wrapper div.insight-graph-wrapper{
 div.insight-graph-wrapper p.insight-graph-title{
   margin: 10px 0px 10px 0px;
   text-align: center;
-  font-size: 21px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 div.insight-graph-wrapper div.insight-info{
@@ -41,7 +41,7 @@ div.insight-graph-wrapper div.insight-info{
 }
 div.insight-info div.insight-info-icon{
   position: absolute;
-  top: 0px;
+  top: 4px;
   right: 0px;
   height: 20px;
   width: 20px;
@@ -54,9 +54,10 @@ div.insight-info div.insight-info-icon svg.info-icon{
 
 div.insight-info div.insight-tooltip{
   position: absolute;
-  top: 23px;
-  right: 0px;
-  width: 220px;
+  top: 26px;
+  right: 2px;
+  max-width: 220px;
+  min-width: 200px;
   border: solid 1px #bfbfbf;
   z-index: 5;
   padding: 5px 5px 5px 5px;
@@ -71,10 +72,131 @@ div.insight-info:hover div.insight-tooltip{
   display: block;
 }
 
+
+div.custom-tooltip-daily-activity, div.custom-tooltip-date-activity{
+  background-color: white;
+  max-width: 200px;
+  padding: 1px 6px 3px 6px;
+  border: solid 1px #7ea0aa;
+  border-radius: 5px;
+  color: #484848;
+}
+
+div.custom-tooltip-daily-activity p.tooltip-hour, div.custom-tooltip-date-activity p.tooltip-date{
+  font-size: 14px;
+  width: 80%;
+  margin: 0px auto 0px auto;
+  text-align: center;
+  color: #1c1c1c;
+  border-bottom: solid 1px #c5acd1;
+}
+div.custom-tooltip-daily-activity p.tooltip-hour-no-bar{
+  font-size: 14px;
+  margin: 0px auto 0px auto;
+  text-align: center;
+  color: #1c1c1c;
+}
+
+div.custom-tooltip-daily-activity div.custom-tooltip-extra-daily-info, div.custom-tooltip-date-activity div.custom-tooltip-extra-date-info{
+  width: 100%;
+  padding: 0px 4px 0px 4px;
+}
+div.custom-tooltip-daily-activity div.custom-tooltip-extra-daily-info span, div.custom-tooltip-date-activity div.custom-tooltip-extra-date-info span{
+  display: block;
+  font-size: 12px;
+}
 div.chart-wrapper{
   /*border: solid 1px violet;*/
 }
 
 div.chart-wrapper div.recharts-wrapper{
-  margin: 0px auto 20px 5%;
+  margin: 0px auto 0px 5%;
+}
+
+div.insight-graph-wrapper div.extra-info{
+  margin: 0px auto 10px 90px;
+  padding: 0px 0px 4px 0px;
+  border-bottom: solid 1px #a5a5a5;
+  transform: translateY(-6px);
+  width: 440px;
+}
+
+div.extra-info.no-sleep-bar{
+  border-top: solid 1px #a5a5a5;
+  transform: translateY(0px) !important;
+}
+
+div.extra-info div.sleep-bar{
+  position: relative;
+  height: 20px;
+  width: 100%;
+  background-color: #3564ba;
+  border-radius: 4px;
+  margin: 0px 0px 4px 0px;
+}
+
+div.extra-info div.sleep-bar p.never-sleep{
+  font-size: 16px;
+  text-align: center;
+  color: white;
+}
+
+div.sleep-bar div.sleep-hour{
+  position: absolute;
+  background-color: #2f4e88;
+  width: 18.3px;
+  height: 100%;
+}
+
+div.extra-info p{
+  margin: 1px 0px 0px 0px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #5c5c5c;
+}
+
+div#insights-wrapper div.extra-insights{
+  position: relative;
+  margin: 10px 60px 10px 60px;
+  width: 500px;
+  /*border: solid 1px greenyellow;*/
+}
+
+div.extra-insights p.streamer-name-words, div.extra-insights p.streamer-name-games{
+  margin: 10px 0px 10px 0px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+div.extra-insights p span.hue-name{
+  color: #b5db00;
+  animation: hue-text 90s ease-in-out 0s infinite forwards;
+}
+
+div.fav-games-list, div.frequent-words-list{
+  border-top: solid 1px #a5a5a5;
+  border-bottom: solid 1px #a5a5a5;
+  display: flex;
+  flex-flow: row wrap;
+  
+  padding: 0px 0px 5px 0px;
+}
+
+div.fav-games-list p.game-name{
+  margin: 5px 5px 0px 5px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #5A3E85;
+}
+
+div.fav-games-list p.game-name i{
+  color: #2e2e2e;
+}
+
+div.frequent-words-list p.word-name{
+  margin: 5px 5px 0px 5px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #55acee;
 }

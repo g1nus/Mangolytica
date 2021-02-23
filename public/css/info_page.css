@@ -241,3 +241,15 @@ div.tweet-info p.date{
   margin: 0px;
   padding: 0px 0px 0px 10px;
 }
+
+div.tweet-info p.text span.user-tag{
+  color: #0c61a2;
+}
+
+div.tweet-info p.text span.hash-tag{
+  color: #0c9da2;
+}
+div.tweet-info p.text span.link{
+  font-style: italic;
+  color: #3a4a57;
+}
