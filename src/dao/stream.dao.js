@@ -6,7 +6,7 @@ const source = axios.CancelToken.source();
 
 async function getStream(streamerId, streamId) {
   try {
-    let resp = await axios.get(`${config.apiEndpoint}streamers/${streamerId}/streams/${streamId}?key=${config.apiSecret}`, {cancelToken: source.token});
+    let resp = await axios.get(`${config.apiEndpoint}users/${streamerId}/streams/${streamId}`, {cancelToken: source.token});
     return resp.data;
   } catch (error) {
     throw error;

@@ -6,7 +6,7 @@ const source = axios.CancelToken.source();
 
 async function getEmotes(id, emotes) {
   try {
-    let resp = await axios.get(`${config.apiEndpoint}emotes?id=${id}&emotes=${emotes}&key=${config.apiSecret}`, {cancelToken: source.token});
+    let resp = await axios.get(`https://alpha.mangolytica.tk/emotes?id=${id}&emotes=${emotes}&key=${config.apiSecret}`, {cancelToken: source.token});
     return resp.data;
   } catch (error) {
     throw error;
