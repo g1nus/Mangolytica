@@ -5,6 +5,7 @@ import {streamerDao} from 'dao/streamer.dao';
 import HourlyActivity from 'components/modules/insightspage/hourlyActivity';
 import DateActivity from 'components/modules/insightspage/dateActivity';
 import StreamStarts from 'components/modules/insightspage/streamStarts';
+import LoadingText from 'components/modules/loadingText';
 
 const Insights = function({id, streamerInfo}) {
 
@@ -37,13 +38,13 @@ const Insights = function({id, streamerInfo}) {
     <div id='insights-wrapper'>
       {
         (!streamerInsights) ? 
-          <>loading...</>
+          <LoadingText />
         :
           <>
             <p id='mango-score'>
               Mango score is: <span id='score'> {streamerInsights.score} </span>
             </p>
-            <HourlyActivity {...{dailyActivity: streamerInsights.dailyActivity, dailyAverageTweets: streamerInsights.dailyAverageTweets, dailyAverageViewers: streamerInsights.dailyAverageViewers, sleep: streamerInsights.sleep}} />
+            <HourlyActivity {...{dailyActivity: streamerInsights.dailyActivity, dailyTweetPeak: streamerInsights.dailyTweetPeak, dailyAverageViewers: streamerInsights.dailyAverageViewers, sleep: streamerInsights.sleep}} />
             <DateActivity {...{dateActivity: streamerInsights.dateActivity, dateLikesPeak: streamerInsights.dateLikesPeak, dateViewersPeak: streamerInsights.dateViewersPeak, maximalPeak: streamerInsights.maximalPeak}} />
             <StreamStarts dailyActivity={streamerInsights.dailyActivity} maxStreamStarts={streamerInsights.maxStreamStarts}/>
 

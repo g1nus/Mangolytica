@@ -6,6 +6,7 @@ import StreamerInfo from 'components/modules/infopage/streamerInfo';
 import StreamsList from 'components/modules/infopage/streamsList';
 import TweetsList from 'components/modules/infopage/tweetsList';
 import Insights from './insights';
+import LoadingText from 'components/modules/loadingText';
 
 const InfoPage = function() {
 
@@ -40,7 +41,7 @@ const InfoPage = function() {
       <div>
       {
        (!streamerData) ? 
-        <p>loading...</p>
+        <LoadingText />
       : 
         <>
           <StreamerInfo {...{

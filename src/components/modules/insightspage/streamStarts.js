@@ -2,6 +2,30 @@ import Info from 'components/svg/info';
 import React from 'react';
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 
+const getPath = (x, y, width, height) => {
+  if(height !== 0){
+    return  `
+      M ${x} ${y + height}
+      L ${x} ${y + 4}
+      C ${x} ${y+2} ${x+2} ${y} ${x + 4} ${y}
+      L ${x + width - 4} ${y}
+      C ${x + width - 2} ${y} ${x + width} ${y+2} ${x + width} ${y+4}
+      L ${x + width} ${y + height}
+      `
+  }
+
+  return null;
+  
+};
+
+const RoundedBar = (props) => {
+  const {
+    fill, x, y, width, height,
+  } = props;
+
+  return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
+};
+
 function CustomTooltip({ payload, label, active }) {
   if (active && payload) {
     return (
@@ -46,7 +70,7 @@ const StreamStarts = function({dailyActivity, maxStreamStarts}) {
         <BarChart width={500} height={300} data={dailyActivity}>
           <Tooltip content={<CustomTooltip />} />
           <CartesianGrid stroke="#e9e1fa" strokeDasharray="15 5" />
-          <Bar dataKey="streamStarts" barSize={20} fill="#5A3E85" label={renderCustomBarLabel}/>
+          <Bar dataKey="streamStarts" barSize={20} fill="#5A3E85" label={renderCustomBarLabel} shape={<RoundedBar />}/>
           <XAxis dataKey="hour" minTickGap={2} tickFormatter={hourTickFormatter}/>
           <YAxis type='number' domain={[0, maxStreamStarts.streamStarts + 5]} dataKey="streamStarts" />
         </BarChart>

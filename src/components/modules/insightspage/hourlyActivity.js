@@ -22,7 +22,7 @@ const hourTickFormatter = (item) => {
   return `${(item < 10) ? '0' + item : item}:00`;
 }
 
-const HourlyActivity = function({dailyActivity, dailyAverageTweets, dailyAverageViewers, sleep}) {
+const HourlyActivity = function({dailyActivity, dailyTweetPeak, dailyAverageViewers, sleep}) {
 
   return (
     <div className='insight-graph-wrapper'>
@@ -73,7 +73,7 @@ const HourlyActivity = function({dailyActivity, dailyAverageTweets, dailyAverage
           Average Hourly Viewers: <i>{dailyAverageViewers}</i>
         </p>
         <p className='average-tweets'>
-          Average Hourly Tweets: <i>{dailyAverageTweets}</i>
+          Maximum Hourly Tweets: <i>{dailyTweetPeak}</i>
         </p>
         <p className='sleep-info'>
           Sleeping hours: {(sleep.totalSleep < 4 || sleep.totalSleep > 12) ? <i>this person never sleeps!</i> : <i>{sleep.start}—{sleep.end}</i>} 
