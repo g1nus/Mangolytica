@@ -2,13 +2,13 @@ import React from 'react';
 
 import TweetInfo from 'components/modules/infopage/tweetInfo';
 
-const TweetsList = function({tweets}) {
+const TweetsList = function({tweets, title}) {
 
 
   return (
     <div id='tweets-list'>
       <p id='tweets-list-title'>
-        Past tweets
+        {title}
       </p>
       {(tweets.length === 0) ? 
         <p id='no-tweet-match'>no tweets :(</p> 

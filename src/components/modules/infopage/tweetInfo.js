@@ -27,8 +27,12 @@ const TweetInfo = function({date, text, like, retweet_count}) {
       <div className='extra-info'>
         <p className='date'>{date} UTC</p>
         <div className='l-r-info'>
-          <span className='likes'><Likes /> </span> {like}
-          <span className='retweets'><Retweets /> </span> {retweet_count}
+          <div className='likes-wrapper'>
+            <span className='likes'><Likes /> </span> {like}
+          </div>
+          <div className='retweet-wrapper'>
+            {retweet_count} <span className='retweets'><Retweets /> </span>
+          </div>
         </div>
       </div>
     </div>

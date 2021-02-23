@@ -3,6 +3,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label, ScatterCh
 
 import Info from 'components/svg/info';
 import ChatBar from './chatBar';
+import GameBar from './gameBar';
 
 function CustomTooltip({ payload, label, active }) {
   if (active && payload) {
@@ -45,7 +46,7 @@ export function ReferenceLabel({label, viewBox}) {;
   )
 }
 
-const StreamViewersGraph = function ({streamTunits, streamEvents, msDuration, streamerId}) {
+const StreamViewersGraph = function ({streamTunits, streamEvents, msDuration, streamerId, viewersPerGame}) {
 
   return (
     <div className='main-chart-wrapper'>
@@ -57,7 +58,7 @@ const StreamViewersGraph = function ({streamTunits, streamEvents, msDuration, st
           <Info />
         </div>
         <div className='insight-tooltip'>
-          This chart represents the viewers of the stream over its duration. Additinally, you can check the raids and the most common words in chat. Hover over the chart to see more details
+          This chart represents the viewers of the stream over its duration. Additinally, you can check the raids, the most common words in chat and the different games played. Hover over the chart and the bars to see more details
         </div>
       </div>
       <LineChart width={900} height={300} data={streamTunits}>
@@ -77,7 +78,7 @@ const StreamViewersGraph = function ({streamTunits, streamEvents, msDuration, st
       </LineChart>
 
       <ChatBar chatTunits={streamEvents.chatTunits} streamLength={msDuration} streamerId={streamerId} />
-      
+      <GameBar gameTunits={streamEvents.gameTunits} streamLength={msDuration} viewersPerGame={viewersPerGame}/>
     </div>
   )
 }

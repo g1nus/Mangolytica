@@ -49,7 +49,7 @@ const renderCustomBarLabel = ({ payload, x, y, width, height, value }) => {
 const hourTickFormatter = (item) => {
   return item.substring(0,5);
 }
-const StreamSubscriptionsGraph = function ({subPerHour}) {
+const StreamSubscriptionsGraph = function ({subPerHour, totalSubs, meanMonthlySub}) {
   return (
     <div className='insight-graph-wrapper'>
       <p className='insight-graph-title'>
@@ -72,7 +72,14 @@ const StreamSubscriptionsGraph = function ({subPerHour}) {
           <YAxis type='number' domain={[0, Math.max(...subPerHour.map((s) => s.sub)) + 20]} dataKey="sub" />
         </BarChart>
       </div>
-      
+      <div className='extra-info no-sleep-bar'>
+        <p className='total-subs'>
+          Total subs: <i>{totalSubs}</i> 
+        </p>
+        <p className='peak-starts'>
+          The Average Monthly Sub is: <i>{meanMonthlySub} months</i> 
+        </p>
+      </div>
     </div>
   )
 }

@@ -5,7 +5,8 @@ import {streamDao} from 'dao/stream.dao';
 import StreamViewersGraph from 'components/modules/streamPage/streamViewersGraph';
 import StreamInfoBig from 'components/modules/streamPage/streamInfoBig';
 import LoadingText from 'components/modules/loadingText';
-import StreamSubscriptionsGraph from 'components/modules/streamPage/streamSubsciptionsGraph';
+import StreamSubscriptionsGraph from 'components/modules/streamPage/streamSubscriptionsGraph';
+import TweetsList from 'components/modules/infopage/tweetsList';
 
 const StreamPage = function() {
 
@@ -49,9 +50,17 @@ const StreamPage = function() {
             <p className='mango-score'>
               Mango score: <span id='score'>{streamResult.score}</span>
             </p>
-            <StreamViewersGraph {...{streamTunits: streamResult.stream.tunits, streamEvents: streamResult.streamEvents, msDuration: streamResult.stream.msDuration, streamerId}} />
+            <StreamViewersGraph {...{streamTunits: streamResult.stream.tunits, streamEvents: streamResult.streamEvents, msDuration: streamResult.stream.msDuration, streamerId, viewersPerGame: streamResult.averageViewersPerGame}} />
             <div className='extra-stream-info'>
-              <StreamSubscriptionsGraph subPerHour={streamResult.streamEvents.subPerHour} />
+              <StreamSubscriptionsGraph subPerHour={streamResult.streamEvents.subPerHour} totalSubs={streamResult.streamEvents.totalSubs} meanMonthlySub={streamResult.streamEvents.meanMonthlySub}/>
+            
+              <div className='stream-tweets-wrapper'>
+                <div className='stream-tweets-list'>
+                  <TweetsList tweets={streamResult.twitterData.tweetBefore} title={'Tweets Before Stream'} />
+                  <TweetsList tweets={streamResult.twitterData.tweetDuring} title={'Tweets During Stream'} />
+                  <TweetsList tweets={streamResult.twitterData.tweetAfter} title={'Tweets After Stream'} />
+                </div>
+              </div>
             </div>
           </div>
         }
