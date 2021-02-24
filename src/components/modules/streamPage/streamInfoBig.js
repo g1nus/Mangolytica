@@ -13,7 +13,7 @@ const StreamInfoBig = function ({streamInfo}) {
         <img src={streamInfo.thumbnail} className='stream-thumbnail-big' />
         <div className='timestamp'>{streamInfo.duration.substring(0, streamInfo.duration.indexOf('.'))}</div>
       </div>
-      <p className='stream-title'>{streamInfo.title}</p>
+      <p className='stream-title' title={streamInfo.title}>{streamInfo.title}</p>
       <div className='stream-details'>
         <p className='stream-views'>Average Viewers: <i>{streamInfo.averageViewers}</i></p>
         <p className='stream-views'>New Followers: <i>{streamInfo.totalNewFollowers}</i></p>

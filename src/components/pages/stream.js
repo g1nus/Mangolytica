@@ -52,8 +52,26 @@ const StreamPage = function() {
             </p>
             <StreamViewersGraph {...{streamTunits: streamResult.stream.tunits, streamEvents: streamResult.streamEvents, msDuration: streamResult.stream.msDuration, streamerId, viewersPerGame: streamResult.averageViewersPerGame}} />
             <div className='extra-stream-info'>
-              <StreamSubscriptionsGraph subPerHour={streamResult.streamEvents.subPerHour} totalSubs={streamResult.streamEvents.totalSubs} meanMonthlySub={streamResult.streamEvents.meanMonthlySub}/>
-            
+              <div className='sub-games-wrapper'>
+                <StreamSubscriptionsGraph subPerHour={streamResult.streamEvents.subPerHour} totalSubs={streamResult.streamEvents.totalSubs} meanMonthlySub={streamResult.streamEvents.meanMonthlySub}/>
+                
+                <div className='common-games'>
+                  <p className='stream-name-games'>
+                    Stream Games with Title:
+                  </p>
+                  <div className='common-games-list'>
+                    {
+                      streamResult.gameWithTitle.map((game, idx) => 
+                        <div key={idx} className='game-name'>
+                          <p className='name'>{game.gameName}</p> 
+                          <p className='title'>{game.title}</p>
+                        </div>
+                      )
+                    }
+                  </div>
+                </div>
+              </div>
+
               <div className='stream-tweets-wrapper'>
                 <div className='stream-tweets-list'>
                   <TweetsList tweets={streamResult.twitterData.tweetBefore} title={'Tweets Before Stream'} />
