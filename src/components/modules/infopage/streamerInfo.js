@@ -3,33 +3,56 @@ import React, {useState, useEffect, useRef, useContext} from 'react';
 import TwitchLogo from 'components/svg/twitchLogo';
 import TwitterLogo from 'components/svg/twitterLogo';
 import Star from 'components/svg/star';
+import {getToken} from 'services/firebase';
 
 import {AppContext} from 'components/providers/appProvider';
 import {favoritesDao} from 'dao/favorites.dao';
 
-const StreamerInfo = function({profilePicture, twitchName, twitchLoginName, twitchFollowers, twitchDescription, twitterLoginName, twitterFollowers,/*fake default value*/ starred = false}) {
+const StreamerInfo = function({profilePicture, twitchName, twitchLoginName, twitchFollowers, twitchDescription, twitterLoginName, twitterFollowers, streamerId, starred}) {
 
-  const [star, setStar] = useState(starred);
+  const [star, setStar] = useState({loading: true, flagged: false});
 
-  const [loadSubmission, setLoadSubmission] = useState(false);
+  //reference and mount cycle handler
+  const isMounted = useRef(true);
 
   //get data from global context
   const appConsumer = useContext(AppContext);
 
-  //reference and mount cycle handler
-  const isMounted = useRef(true);
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try{
+        const token = await getToken();
+        let favoriteStreamers = await favoritesDao.fetchFavorites(token);
+        let isFavorite = favoriteStreamers.some((streamer) => streamer.twitterInfo.loginName === twitterLoginName);
+        if(isMounted.current) setStar({loading: false, flagged: isFavorite});
+      
+      }catch (err){
+        console.log(err);
+        if(isMounted.current) setStar({loading: false, flagged: false});
+      }
+    }
+
+    if(appConsumer.user){
+      fetchData();
+    }
+
+  }, [appConsumer.user]);
+
   useEffect(() => {
     return () => {
-      isMounted.current = false
-    }
-  }, []); 
+      isMounted.current = false;
+    };
+  }, []);
 
   //function for submitting starred streamer
   async function submitStar() {
-    setLoadSubmission(true);
+    console.log('submitting')
+    setStar({...star, loading: true});
     try{
-      const submission = await favoritesDao.submitFavoriteFake(1111, '11111');
-      if(isMounted.current) {console.log('done!'); setLoadSubmission(false); setStar(!star);}
+      const token = await getToken();
+      const submission = await favoritesDao.submitFavoriteFake(token, streamerId, twitterLoginName);
+      if(isMounted.current) {setStar({loading: false, flagged: !star.flagged})}
     }catch (err){
       console.log(err);
     }
@@ -60,8 +83,8 @@ const StreamerInfo = function({profilePicture, twitchName, twitchLoginName, twit
 
       {
         (appConsumer.user) ?
-          <div id='favorite-streamer-wrapper' onClick={submitStar} style={{pointerEvents: (loadSubmission) ? 'none' : '', opacity: (loadSubmission) ? '0.5' : '1.0'}}>
-            <Star starred={star}/>
+          <div id='favorite-streamer-wrapper' onClick={submitStar} style={{pointerEvents: (star.loading) ? 'none' : '', opacity: (star.loading) ? '0.5' : '1.0'}}>
+            <Star starred={star.flagged}/>
           </div>
         :
           <></>

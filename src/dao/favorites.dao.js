@@ -14,13 +14,13 @@ async function fetchFavorites(userToken){
   }
 }
 
-async function submitFavoriteFake(userToken, streamerId) {
-  console.log(userToken);
-  return new Promise(function (resolve, reject) {
-    setTimeout(() => {
-      resolve({msg: 'ok'});
-    }, 1000);
-  });
+async function submitFavoriteFake(userToken, streamerId, twitterId) {
+  try{
+    let resp = await axios.post(`${config.apiEndpoint}favorites`, {g_token: userToken, twitchId: streamerId, twitterId});
+    return resp.data;
+  } catch (err) {
+    throw err;
+  }
 }
 
 

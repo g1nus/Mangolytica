@@ -51,7 +51,8 @@ const InfoPage = function() {
             twitchFollowers: streamerData.twitchInfo.followers,
             twitterLoginName: streamerData.twitter_info.screen_name,
             twitterFollowers: streamerData.twitter_info.followers_count,
-            profilePicture: streamerData.twitchInfo.profilePicture
+            profilePicture: streamerData.twitchInfo.profilePicture,
+            streamerId: streamerData.twitchInfo.streamerId
           }} />
 
           <Switch>
