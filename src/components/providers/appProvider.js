@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react';
 import { auth } from "services/firebase"
 import Error from 'components/modules/error';
 
+import {streamerDao} from 'dao/streamer.dao'
+
 //create a context object
 const AppContext = React.createContext();
 
@@ -15,6 +17,9 @@ const AppProvider = function (props) {
   //notification message
   const [notificationMessage, setNotificationMessage] = useState(undefined);
 
+  //trending streamers
+  const [trending, setTrending] = useState(undefined);
+
   //preparate an object to be insertd into context
   const contextObject ={
       user,
@@ -23,6 +28,8 @@ const AppProvider = function (props) {
       setError,
       notificationMessage,
       setNotificationMessage,
+      trending,
+      setTrending
   };
 
 
@@ -35,6 +42,20 @@ const AppProvider = function (props) {
         setUser(null);
       }
     })
+
+    const fetchData = async () => {
+      try{
+        let trendingStreamers = await streamerDao.fetchTrending();
+        setTrending(trendingStreamers);
+      
+      }catch (err){
+        console.log(err);
+        setTrending([{error: `failed`}]);
+      }
+    }
+
+    fetchData();
+
   }, [])
 
   //if there isn't error
