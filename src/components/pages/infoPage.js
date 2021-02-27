@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useRef, useEffect, useState, useContext} from 'react';
 import {Link, Switch, Route, useParams} from 'react-router-dom';
 
 import {streamerDao} from 'dao/streamer.dao';
@@ -8,12 +8,17 @@ import TweetsList from 'components/modules/infopage/tweetsList';
 import Insights from './insights';
 import LoadingText from 'components/modules/loadingText';
 
+import {AppContext} from 'components/providers/appProvider'
+
 const InfoPage = function() {
 
   let { id } = useParams();
   const isMounted = useRef(true);
 
   const [streamerData, setStreamerData] = useState(undefined);
+
+  //get data from global context
+  const appConsumer = useContext(AppContext);
 
   useEffect(() => {
     const fetchData = async () =>{
@@ -24,7 +29,7 @@ const InfoPage = function() {
 
       }catch (err){
         console.log(err);
-        if(isMounted.current) setStreamerData([{error: `failed`}]);
+        if(isMounted.current) appConsumer.setError(err);
       }
 
     }

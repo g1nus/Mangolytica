@@ -117,7 +117,7 @@ const SearchResults = function(props) {
         ((searchResultsMango.length === 0) ? 
           <p id='no-mango-match'>nothing matched in our database</p> 
         : 
-          <div id='mango-match-results'>
+          <div className='mango-match-results'>
             {
               searchResultsMango.map((result, index) => <div key={index}> <MangoStreamer {...{twitchInfo: result.twitchInfo, twitterInfo: result.twitterInfo, available: result.monitored}} /> </div>)
             }

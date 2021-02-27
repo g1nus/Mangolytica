@@ -7,7 +7,7 @@ const TwitchStreamer = function({displayName, isLive, profilePicture, followers,
   return (
       <div className='web-twitch-streamer-grid'>
 
-        <p className='name'>{displayName}</p>
+        <p className='name' title={displayName}>{displayName}</p>
         <p className='followers'>{followers} followers</p>
 
         <div className='web-twitch-streamer-pic'>

@@ -8,7 +8,7 @@ const TwitterUser = function({user_screen, verified, profile_image, followers_co
   return (
       <div className='web-twitter-user-grid'>
 
-        <p className='name'>{user_screen}</p>
+        <p className='name' title={user_screen}>{user_screen}</p>
         <p className='followers'>{followers_count} followers</p>
 
         <div className='web-twitter-user-pic'>

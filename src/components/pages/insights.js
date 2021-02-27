@@ -1,5 +1,4 @@
-import Info from 'components/svg/info';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 
 import {streamerDao} from 'dao/streamer.dao';
 import HourlyActivity from 'components/modules/insightspage/hourlyActivity';
@@ -7,9 +6,14 @@ import DateActivity from 'components/modules/insightspage/dateActivity';
 import StreamStarts from 'components/modules/insightspage/streamStarts';
 import LoadingText from 'components/modules/loadingText';
 
+import {AppContext} from 'components/providers/appProvider'
+
 const Insights = function({id, streamerInfo}) {
 
   const [streamerInsights, setStreamerInsights] = useState(undefined)
+
+  //get data from global context
+  const appConsumer = useContext(AppContext);
 
   const isMounted = useRef(true);
   useEffect(() => {
@@ -23,7 +27,7 @@ const Insights = function({id, streamerInfo}) {
 
       }catch (err){
         console.log(err);
-        if(isMounted.current) setStreamerInsights([{error: `failed`}]);
+        if(isMounted.current) appConsumer.setError(err);
       }
 
     }

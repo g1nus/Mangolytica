@@ -89,6 +89,21 @@ div#search-wrapper p#submitted-info{
   color: #827255;
 }
 
+
+a.all-monitored{
+  width: 201px;
+  margin: 30px auto 0px auto;
+  font-size: 15px;
+  font-weight: 300;
+  color: #6a5a3b;
+  text-decoration-style: dashed !important;
+}
+
+div.monitored-list-wrapper a.mango-streamer{
+  display: inline-block;
+  width: 350px;
+  margin: 10px auto 0px auto;
+}
 /*MOBILE*/
 @media only screen and (max-width: 600px) {
   div#search-wrapper{

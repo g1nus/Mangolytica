@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
 import { auth } from "services/firebase"
-import Error from 'components/modules/error';
 
 import {streamerDao} from 'dao/streamer.dao'
+import ErrorPage from 'components/pages/errorPage';
 
 //create a context object
 const AppContext = React.createContext();
@@ -73,7 +73,7 @@ const AppProvider = function (props) {
     return (
       //*set the values of contenxt*
       <AppContext.Provider value={contextObject}>
-        <Error/>
+        <ErrorPage />
       </AppContext.Provider>
     )
   }

@@ -38,7 +38,7 @@ div#search-results-wrapper p#no-mango-match{
 div#search-results-wrapper div#platform-results-wrapper{
   margin: 20px 0px 0px 0px;
 }
-div#search-results-wrapper div#platform-results-wrapper div#mango-match-results{
+div#search-results-wrapper div#platform-results-wrapper div.mango-match-results{
   width: 70%;
   margin: 0 auto;
 
@@ -377,9 +377,27 @@ button#submit-users{
   animation: hue 90s ease-in-out 0s infinite forwards;
 }
 
+div#platform-results-wrapper p#title {
+  margin: 30px 0px 0px 0px;
+  text-align: center;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+div#search-results-wrapper div#monitored-loading{
+  height: 20px;
+  width: 60px;
+  margin: 20px auto 0px auto;
+}
+
+span#monitored-streams-hue-text{
+  color: #b5db00;
+  animation: hue-text 90s ease-in-out 0s infinite forwards;
+}
+
 /*MOBILE*/
 @media only screen and (max-width: 600px) {
-  div#search-results-wrapper div#platform-results-wrapper div#mango-match-results{
+  div#search-results-wrapper div#platform-results-wrapper div.mango-match-results{
     width: 95%;
     /*flex-direction: column;*/
   }

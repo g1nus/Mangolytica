@@ -99,6 +99,15 @@
   }
 }
 
+div.App-404 {
+  background-color: white;
+  color: black;
+}
+
+header.App-404-header {
+  background-color: white;
+  color: black;
+}
 
 p.loading{
   position: relative;
@@ -158,6 +167,26 @@ code {
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+div.face{
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+div.face div.eyes{
+  width: 50px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+div.face div.mouth{
+  font-size: 30px;
+}
+
+p.error{
+  margin: 2px;
 }
 
 /*SVG*/

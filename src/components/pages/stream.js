@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useContext} from 'react';
 import {useParams} from 'react-router-dom';
 
 import {streamDao} from 'dao/stream.dao';
@@ -8,6 +8,8 @@ import LoadingText from 'components/modules/loadingText';
 import StreamSubscriptionsGraph from 'components/modules/streamPage/streamSubscriptionsGraph';
 import TweetsList from 'components/modules/infopage/tweetsList';
 
+import {AppContext} from 'components/providers/appProvider'
+
 const StreamPage = function() {
 
   let { streamerId, streamId } = useParams();
@@ -15,6 +17,9 @@ const StreamPage = function() {
 
   const [events, setEvents] = useState(undefined);
   const [streamResult, setStreamResult] = useState(undefined);
+
+  //get data from global context
+  const appConsumer = useContext(AppContext);
 
   useEffect(() => {
     const fetchData = async () =>{
@@ -25,7 +30,7 @@ const StreamPage = function() {
         
       }catch (err){
         console.log(err);
-        if(isMounted.current) setEvents([{error: `failed`}]);
+        if(isMounted.current) appConsumer.setError(err);
       }
 
     }

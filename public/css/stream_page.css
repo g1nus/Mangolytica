@@ -267,6 +267,9 @@ div.raid-label p{
 div.raid-label p.raid-hour{
   display: none;
 }
+div.raid-label:hover {
+  z-index: 5000;
+}
 div.raid-label:hover p.raid-hour{
   display: block;
 }
