@@ -12,7 +12,12 @@ const MangoStreamer = function({twitchInfo, twitterInfo, available}) {
         <p className='name'>{twitchInfo.displayName}</p>
 
         <div className='mango-streamer-pic'>
-          <img src={twitchInfo.profilePicture} className='mango-streamer-propic' />
+          {
+            (available) ?
+              <img src={twitchInfo.profilePicture} className='mango-streamer-propic' />
+            :
+              <img src='https://visualpharm.com/assets/873/Nothing%20Found-595b40b65ba036ed117d20ae.svg' className='mango-streamer-propic' />
+          }
         </div>
 
         <div className='mango-streamer-twitch'>

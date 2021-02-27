@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import TrendingStreamers from 'components/modules/search/trendingStreamers';
 import SearchButton from 'components/svg/searchButton';
@@ -45,6 +45,7 @@ const Search = function(props) {
       :
         <></>
       }
+      <Link className='all-monitored' to='monitored'>list of all monitored streamers</Link>
     </div>
   );
 }

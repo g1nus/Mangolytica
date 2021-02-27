@@ -31,10 +31,20 @@ async function getStreamerInsights(id) {
   }
 }
 
+async function getMonitoredStreamers() {
+  try {
+    let resp = await axios.get(`${config.apiEndpoint}monitored`, {cancelToken: source.token});
+    return resp.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 const streamerDao = {
   fetchTrending,
   getStreamerInfo,
-  getStreamerInsights
+  getStreamerInsights,
+  getMonitoredStreamers
 }
 
 export {streamerDao}
